@@ -1,3 +1,4 @@
+var t;
 var mqtt;
 var settings;
 var metrics;
@@ -9,32 +10,6 @@ $(document).ready(init);
 
 function init() {
     $('#connectionSettingsBtn').click(connectionSettings)
-    $('#connectBtn').click(connect)
-    $('#receiveMetricsBtn').click(receiveMetrics)
-    loadSettings()
-}
-
-function loadSettings() {
-    settings = JSON.parse(localStorage.getItem('settings'));
-    if (settings) {
-        $('#host').val(settings.host);
-        $('#port').val(settings.port);
-        $('#username').val(settings.username);
-        $('#password').val(settings.password);
-        $('#clientid').val(settings.clientid);
-    }
-    metrics = JSON.parse(localStorage.getItem('metrics'));
-}
-
-function storeSettings() {
-    localStorage.setItem('settings', JSON.stringify(settings));
-}
-
-function connectionSettings() {
-    $('#settingsFormContainer').show();
-    if ($('#clientid').val() == "") {
-        $('#clientid').val("jsmqttdash-" + Math.floor(Math.random() * 10000))
-    }
     $("#settingsForm").submit(function( event ) {
         event.preventDefault();
         settings = {
@@ -44,12 +19,43 @@ function connectionSettings() {
             password: $('#password').val(),
             clientid: $('#clientid').val()
         }
-        storeSettings()
+        storeSettings();
         $('#settingsFormContainer').hide();
     });
+    $("#connectBtn").html($('#connectBtn').attr('data-connect-str'));
+    $('#connectBtn').click(connect);
+    $('#receiveMetricsBtn').click(receiveMetrics);
+    loadSettings();
+}
+
+function loadSettings() {
+    settings = JSON.parse(localStorage.getItem('settings'));
+    metrics = JSON.parse(localStorage.getItem('metrics'));
+}
+
+function storeSettings() {
+    localStorage.setItem('settings', JSON.stringify(settings));
+}
+
+function connectionSettings() {
+    if ($('#settingsFormContainer').is(":visible")) {
+        $('#settingsFormContainer').hide();
+    } else {
+        if (settings) {
+            $('#host').val(settings.host);
+            $('#port').val(settings.port);
+            $('#username').val(settings.username);
+            $('#password').val(settings.password);
+            $('#clientid').val(settings.clientid);
+        }
+        $('#settingsFormContainer').show();
+        if ($('#clientid').val() == "") {
+            $('#clientid').val("mjd-" + Math.floor(Math.random() * 10000));
+        }
+    }
 }
 function connect() {
-    MQTTconnect()
+    MQTTconnect();
 }
 
 function disconnect() {
@@ -65,9 +71,9 @@ function createMetrics() {
     $("#metrics").empty();
     metrics.forEach(function(metric, idx) {
         var elem = $('#metricTemplate').clone();
-        $(elem).click(publish)
+        $(elem).click(publish);
         $(elem).attr('id', "id_" + metric.id);
-        $(".name", elem).html(metric.name)
+        $(".name", elem).html(metric.name);
         $(elem).appendTo("#metrics");
 
         updateMetric(idx);
@@ -94,7 +100,7 @@ function updateMetric(idx) {
 
     switch (metric.type) {
         case 1: // text
-            $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + payload + metric.postfix)
+            $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + payload + metric.postfix);
             break;
         case 2: //switch
             switch (payload) {
@@ -117,21 +123,43 @@ function updateMetric(idx) {
 
 }
 
+function updateMetricLast() {
+    metrics.forEach(function(metric) {
+        $('#id_' + metric.id + ' .last').html(metric.lastActivity != 0 ? elapsed(metric.lastActivity) : "");
+    });
+}
+
 function elapsed (timestamp) {
     var delta = new Date() - new Date(timestamp*1000);
 
-    if (delta < 60000) {return Math.round(delta/1000) + ' seconds ago';}
-    else if (delta < 3600000) {return Math.round(delta/60000) + ' minutes ago';}
-    else if (delta < 86400000 ) {return Math.round(delta/3600000) + ' hours ago';}
-    else if (delta < 2592000000) {return Math.round(delta/86400000) + ' days ago';}
-    else if (delta < 31536000000) {return Math.round(delta/2592000000) + ' months ago';}
-    else {return Math.round(delta/31536000000) + ' years ago';}
+    var i;
+
+    if (delta < 60000) {i = Math.round(delta/1000); return i + ' секунд' + ['у','ы',''][getPluralType(i)] + ' назад';}
+    else if (delta < 3600000) {i = Math.round(delta/60000); return i + ' минут' + ['у','ы',''][getPluralType(i)] + ' назад';}
+    else if (delta < 86400000 ) {i = Math.round(delta/3600000); return i + ' час' + ['','а','ов'][getPluralType(i)] + ' назад';}
+    else if (delta < 2592000000) {i = Math.round(delta/86400000); return i + ' ' + ['день','дня','дней'][getPluralType(i)] + ' назад';}
+    else if (delta < 31536000000) {i = Math.round(delta/2592000000); return i + ' месяц' + ['','а','ев'][getPluralType(i)] + ' назад';}
+    else {i = Math.round(delta/31536000000); return i + ' ' + ['год','года','лет'][getPluralType(i)] + ' назад';}
+}
+
+function getPluralType(number) {
+    if (number>=11 && number<=19) {
+      return 2;
+    } else {
+      switch (number % 10) {
+        case 1: return 0;
+        case 2:
+        case 3:
+        case 4: return 1;
+        default: return 2;
+      }
+    }
 }
 
 function publish(e) {
     var metric = metrics.find((metric) => metric.id === e.currentTarget.id.substring(3));
     
-    if (!metric.enablePub) return
+    if (!metric.enablePub) return;
     
     if (typeof metric.topicPub != "undefined") {
         var topic = metric.topicPub;
@@ -172,29 +200,31 @@ function onConnect() {
     console.log("Connected to " + settings.host);
     $('#connectBtn').off('click',connect);
     $('#connectBtn').click(disconnect);
-    $("#connectBtn").html('Disconnect');
+    $("#connectBtn").html($('#connectBtn').attr('data-disconnect-str'));
     createMetrics();
+    t = setInterval(updateMetricLast,1000);
 }
 
 function onConnectionLost() {
     console.log("Connection to " + settings.host + " lost");
     $('.loader').hide();
-    topics = [];
     $('#connectBtn').off('click',disconnect);
     $('#connectBtn').click(connect);
-    $("#connectBtn").html('Connect');
+    $("#connectBtn").html($('#connectBtn').attr('data-connect-str'));
+    topics = [];
+    clearInterval(t);
 }
 
 function onFailure(message) {
     console.log("Connection attempt to " + settings.host + " failed");
 }
 
-function onMessageArrived(msg){
+function onMessageArrived(msg) {
     console.log(msg.destinationName);
     console.log(msg.payloadString);
     if (msg.destinationName == "metrics/exchange") {
-        mqtt.unsubscribe("metrics/exchange")
-        metrics = JSON.parse(msg.payloadString)
+        mqtt.unsubscribe("metrics/exchange");
+        metrics = JSON.parse(msg.payloadString);
         localStorage.setItem('metrics', JSON.stringify(metrics));
         createMetrics();
     } else {
@@ -222,5 +252,5 @@ function MQTTconnect() {
     };
     mqtt.onMessageArrived = onMessageArrived;
     mqtt.onConnectionLost = onConnectionLost;
-    mqtt.connect(options); //connect
+    mqtt.connect(options);
 }

@@ -12,28 +12,28 @@
         <link href="css/mjd-colors.css" rel="stylesheet" />
     </head>
     <body>
-        <button id="connectionSettingsBtn">Connection settings</button>
-        <button id="connectBtn">Connect</button>
-        <button id="receiveMetricsBtn">Receive metrics</button>
+        <button id="connectionSettingsBtn">Настройки соединения</button>
+        <button id="connectBtn" data-connect-str="Подключить" data-disconnect-str="Отключить"></button>
+        <button id="receiveMetricsBtn">Получить метрики</button>
 
         <div id="settingsFormContainer">
             <form id="settingsForm">
-              <label for="host">Host:</label>
+              <label for="host">Хост:</label>
               <input type="text" id="host" name="host"><br>
 
-              <label for="port">Port:</label>
+              <label for="port">Порт:</label>
               <input type="text" id="port" name="port"><br>
 
-              <label for="username">Username:</label>
+              <label for="username">Имя пользователя:</label>
               <input type="text" id="username" name="username"><br>
 
-              <label for="password">Password:</label>
+              <label for="password">Пароль:</label>
               <input type="password" id="password" name="password"><br>
 
-              <label for="clientid">Client ID:</label>
+              <label for="clientid">Идентификатор клиента:</label>
               <input type="text" id="clientid" name="clientid"><br>
               
-              <input type="submit" value="Create">
+              <input type="submit" value="Применить">
             </form>
         </div>
 
