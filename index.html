@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>MQTT JS Dashboard (MJD)</title>
+
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/mjd-icons.css" rel="stylesheet" />
+        <link href="css/mjd-colors.css" rel="stylesheet" />
+    </head>
+    <body>
+        <button id="connectionSettingsBtn">Connection settings</button>
+        <button id="connectBtn">Connect</button>
+        <button id="receiveMetricsBtn">Receive metrics</button>
+
+        <div id="settingsFormContainer">
+            <form id="settingsForm">
+              <label for="host">Host:</label>
+              <input type="text" id="host" name="host"><br>
+
+              <label for="port">Port:</label>
+              <input type="text" id="port" name="port"><br>
+
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username"><br>
+
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password"><br>
+
+              <label for="clientid">Client ID:</label>
+              <input type="text" id="clientid" name="clientid"><br>
+              
+              <input type="submit" value="Create">
+            </form>
+        </div>
+
+        <div id="metrics"></div>
+
+        <div id="metricTemplate" class="metric">
+            <div class="name"></div>
+            <div class="body"><span></span></div>
+            <div class="last"></div>
+            <div class="loader">
+                <div class="mask">
+                    <div class="spinner pie"></div>
+                    <div class="filler pie"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/mqttws31.min.js"></script>
+        <script src="js/jsonpath-0.8.0.js"></script>
+        <script src="js/mjd.js"></script>
+    </body>	
+</html>

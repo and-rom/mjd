@@ -1,0 +1,134 @@
+body {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+#metricTemplate,
+#settingsFormContainer {
+    display:none;
+}
+
+.metric {
+    background-color: #181818;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    float: left;
+}
+
+.metric:hover {
+    background-color: #303030;
+}
+
+.metric > * {
+    text-align: center;
+}
+
+.metric .name {
+    height: 20px;
+}
+
+.metric .body {
+    height: 160px;
+}
+
+.metric .last {
+    height: 20px;
+    color: #474747;
+    font-size: 15px;
+}
+
+.metric .body .mjd-text {
+    height: 160px;
+    line-height: 160px;
+    white-space: nowrap;
+    font-size: 60px;
+}
+
+.metric .body .mjd-icon {
+    height: 160px;
+    line-height: 160px;
+    white-space: nowrap;
+    font-size: 120px;
+}
+
+.loader{
+  display:none;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin:-100px 0 0 -100px;
+  animation: rota 1s linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+.pie{
+  width: 100px;
+  height: 200px;
+  position: absolute;
+  border: 20px solid #03a9f4;  
+  box-sizing: border-box;
+}
+
+.spinner{
+  border-radius: 100px 0 0 100px;
+  z-index: 200;
+  right: 100px;
+  border-right: none;
+  transform-origin: right center;
+  animation: rota 1s linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+.filler{
+  border-radius: 0 100px 100px 0;
+  border-left: none;
+  right: 0px;
+  opacity: 0;
+  animation: rota2 1s linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+.mask{
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  overflow: hidden;
+  animation: mask 1s linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+@keyframes mask {
+  0%   { width: 100px; }
+  49.9%  { width: 100px; }
+  50%  { width: 200px; } 
+  99.9% { width: 200px; }
+  100% { width: 100px; }
+}
+
+@keyframes rota{
+  0%   {transform: rotate(0deg);}
+  49.9%  {transform: rotate(180deg);}
+  100% {transform: rotate(360deg);}
+}
+
+@keyframes rota2{
+  0%   {opacity: 0;}
+  49.9%  {opacity: 0;}
+  50%  {opacity: 1;}
+  100% {opacity: 1;}
+}

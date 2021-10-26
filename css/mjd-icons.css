@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "mjd-icons";
+  src: url("../fonts/mjd-icons.woff") format("woff"), url("../fonts/mjd-icons.ttf") format("truetype");
+}
+
+.mjd-icon {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+.mjd-icon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: "mjd-icons";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mjd-icon-ic_language:before {
+    content: "\0041";
+}
+
+.mjd-icon-ic_water:before {
+    content: "\0042";
+}
+
+.mjd-icon-ic_light3_on:before {
+    content: "\0043";
+}
+
+.mjd-icon-ic_light3_off:before {
+    content: "\0044";
+}
+
+.mjd-icon-ic_cam1_on:before {
+    content: "\0045";
+}
+
+.mjd-icon-ic_cam1_off:before {
+    content: "\0046";
+}
+
+.mjd-icon-ic_pc:before {
+    content: "\0047";
+}
+
+.mjd-icon-ic_change_history:before {
+    content: "\0048";
+}
+
+.mjd-icon-ic_led:before {
+    content: "\0049";
+}
+
+.mjd-icon-ic_check_box_checked:before {
+    content: "\004a";
+}
+
+.mjd-icon-ic_check_box_unchecked:before {
+    content: "\004b";
+}
