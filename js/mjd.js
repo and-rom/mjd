@@ -69,6 +69,7 @@ function receiveMetrics() {
 function createMetrics() {
     if (metrics == null) return;
     $("#metrics").empty();
+    topics = [];
     metrics.forEach(function(metric, idx) {
         var elem = $('#metricTemplate').clone();
         $(elem).click(publish);
@@ -211,7 +212,6 @@ function onConnectionLost() {
     $('#connectBtn').off('click',disconnect);
     $('#connectBtn').click(connect);
     $("#connectBtn").html($('#connectBtn').attr('data-connect-str'));
-    topics = [];
     clearInterval(t);
 }
 
