@@ -86,25 +86,28 @@ function createMetrics() {
     });
 }
 
-function updateMetric(idx) {
+function updateMetric(idx, payload = null, lastActivity = null) {
     var metric = metrics[idx];
     var elem = $('#id_' + metric.id);
 
+    payload = payload !== null ? payload : metric.lastPayload;
+    lastActivity = lastActivity !== null ? lastActivity : metric.lastActivity;
+
     if (metric.jsonPath != "") {
-        metric.lastJsonPathValue = metric.lastPayload != "" ? jsonPath(JSON.parse(metric.lastPayload), metric.jsonPath) : metric.lastPayload;
-        var payload = metric.lastJsonPathValue;
+        var targetPayload = payload != "" ? jsonPath(JSON.parse(payload), metric.jsonPath) : payload;
     } else {
-        var payload = metric.lastPayload;
+        var targetPayload = payload;
     }
 
-    payload = typeof payload !== "undefined" ? payload : metric.payloadOff;
+    targetPayload = typeof targetPayload !== "undefined" ? targetPayload : metric.payloadOff;
 
     switch (metric.type) {
         case 1: // text
-            $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + payload + metric.postfix);
+            $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + targetPayload + metric.postfix);
             break;
         case 2: //switch
-            switch (payload) {
+            if (targetPayload != metric.payloadOn && payload != metric.payloadOff ) return;
+            switch (targetPayload) {
                 case metric.payloadOn:
                     var icon = metric.iconOn;
                     var color = metric.onColor;
@@ -113,14 +116,22 @@ function updateMetric(idx) {
                     var icon = metric.iconOff;
                     var color = metric.offColor;
                     break;
+                default:
+
+                    break;
             }
             $(".body span", elem).removeClass().addClass("mjd-icon").addClass("mjd-icon-" + icon).addClass("mjd-color" + color);
             break;
         default:
             console.log("Unknown type");
     }
-    
-    $(".last", elem).html(metric.lastActivity != 0 ? elapsed(metric.lastActivity) : "");
+
+
+    $(".last", elem).html(lastActivity != 0 ? elapsed(lastActivity) : "");
+
+    metric.lastPayload = payload;
+    if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
+    metric.lastActivity = lastActivity;
 
 }
 
@@ -159,15 +170,15 @@ function getPluralType(number) {
 
 function publish(e) {
     var metric = metrics.find((metric) => metric.id === e.currentTarget.id.substring(3));
-    
+
     if (!metric.enablePub) return;
-    
+
     if (typeof metric.topicPub != "undefined") {
         var topic = metric.topicPub;
     } else {
         var topic = metric.topic;
     }
-    
+
     if (metric.jsonPath != "") {
         var lastPayload = metric.lastJsonPathValue;
     } else {
@@ -230,10 +241,8 @@ function onMessageArrived(msg) {
     } else {
         metrics.forEach((metric, idx) => {
             if (metric.topic === msg.destinationName) {
-                metric.lastPayload = msg.payloadString;
-                metric.lastActivity = Math.trunc(Date.now()/1000);
                 $('#id_' + metric.id + ' .loader').hide();
-                updateMetric(idx);
+                updateMetric(idx, msg.payloadString, Math.trunc(Date.now()/1000));
             }
         })
     }
