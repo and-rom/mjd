@@ -22,6 +22,9 @@ body {
 .metric:hover {
     background-color: #303030;
 }
+.metric.blink {
+    background-color: #707070;
+}
 
 .metric > * {
     text-align: center;

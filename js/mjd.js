@@ -127,7 +127,7 @@ function updateMetric(idx, payload = null, lastActivity = null) {
     }
 
 
-    $(".last", elem).html(lastActivity != 0 ? elapsed(lastActivity) : "");
+    $(".last", elem).html(lastActivity != 0 ? elapsed(lastActivity)[1] : "");
 
     metric.lastPayload = payload;
     if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
@@ -137,21 +137,31 @@ function updateMetric(idx, payload = null, lastActivity = null) {
 
 function updateMetricLast() {
     metrics.forEach(function(metric) {
-        $('#id_' + metric.id + ' .last').html(metric.lastActivity != 0 ? elapsed(metric.lastActivity) : "");
+        var el = elapsed(metric.lastActivity);
+        $('#id_' + metric.id + ' .last').html(metric.lastActivity != 0 ? el[1] : "");
+        if (metric.jsBlinkExpression != "") {
+            var val = metric.jsonPath != "" ? metric.lastJsonPathValue : metric.lastPayload;
+            val = typeof val === 'string' ? "\"" + val + "\"" : val;
+            if (eval(metric.jsBlinkExpression.replace(/val/g, val).replace(/secs/g, el[0]))) {
+                $('#id_' + metric.id).toggleClass('blink');
+            } else {
+                $('#id_' + metric.id).removeClass('blink');
+            }
+        }
     });
 }
 
 function elapsed (timestamp) {
-    var delta = new Date() - new Date(timestamp*1000);
+    var delta = Math.round((new Date() - new Date(timestamp*1000))/1000);
 
     var i;
 
-    if (delta < 60000) {i = Math.round(delta/1000); return i + ' секунд' + ['у','ы',''][getPluralType(i)] + ' назад';}
-    else if (delta < 3600000) {i = Math.round(delta/60000); return i + ' минут' + ['у','ы',''][getPluralType(i)] + ' назад';}
-    else if (delta < 86400000 ) {i = Math.round(delta/3600000); return i + ' час' + ['','а','ов'][getPluralType(i)] + ' назад';}
-    else if (delta < 2592000000) {i = Math.round(delta/86400000); return i + ' ' + ['день','дня','дней'][getPluralType(i)] + ' назад';}
-    else if (delta < 31536000000) {i = Math.round(delta/2592000000); return i + ' месяц' + ['','а','ев'][getPluralType(i)] + ' назад';}
-    else {i = Math.round(delta/31536000000); return i + ' ' + ['год','года','лет'][getPluralType(i)] + ' назад';}
+    if (delta < 60) {i = delta; return [delta, i + ' секунд' + ['у','ы',''][getPluralType(i)] + ' назад'];}
+    else if (delta < 3600) {i = Math.round(delta/60); return [delta, i + ' минут' + ['у','ы',''][getPluralType(i)] + ' назад'];}
+    else if (delta < 86400 ) {i = Math.round(delta/3600); return [delta, i + ' час' + ['','а','ов'][getPluralType(i)] + ' назад'];}
+    else if (delta < 2592000) {i = Math.round(delta/86400); return [delta, i + ' ' + ['день','дня','дней'][getPluralType(i)] + ' назад'];}
+    else if (delta < 31536000) {i = Math.round(delta/2592000); return [delta, i + ' месяц' + ['','а','ев'][getPluralType(i)] + ' назад'];}
+    else {i = Math.round(delta/31536000); return [delta, i + ' ' + ['год','года','лет'][getPluralType(i)] + ' назад'];}
 }
 
 function getPluralType(number) {
