@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1000"
+   height="1000"
+   version="1.1"
+   id="svg8"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs5498" />
+  <metadata
+     id="metadata5594">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+     d="M 860,50 H 320 c -49.5,0 -90,40.5 -90,90 v 540 c 0,49.5 40.5,90 90,90 h 540 c 49.5,0 90,-40.5 90,-90 V 140 C 950,90.5 909.5,50 860,50 Z M 770,275 H 635 V 522.5 C 635,584.60156 584.60156,635 522.5,635 460.39844,635 410,584.60156 410,522.5 410,460.39844 460.39844,410 522.5,410 c 25.64844,0 48.60156,8.55078 67.5,22.94922 V 185 H 770 Z M 140,230 H 50 v 630 c 0,49.5 40.5,90 90,90 H 770 V 860 H 140 Z m 0,0"
+     id="path6" />
+</svg>

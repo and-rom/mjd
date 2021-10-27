@@ -20,46 +20,1755 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.mjd-icon-ic_language:before {
-    content: "\0041";
+.mjd-icon-ic_bell_on:before {
+    content: "\00ad";
 }
 
-.mjd-icon-ic_water:before {
-    content: "\0042";
-}
-
-.mjd-icon-ic_light3_on:before {
-    content: "\0043";
-}
-
-.mjd-icon-ic_light3_off:before {
-    content: "\0044";
-}
-
-.mjd-icon-ic_cam1_on:before {
-    content: "\0045";
-}
-
-.mjd-icon-ic_cam1_off:before {
-    content: "\0046";
-}
-
-.mjd-icon-ic_pc:before {
-    content: "\0047";
-}
-
-.mjd-icon-ic_change_history:before {
-    content: "\0048";
-}
-
-.mjd-icon-ic_led:before {
-    content: "\0049";
+.mjd-icon-ic_bell_off:before {
+    content: "\00ac";
 }
 
 .mjd-icon-ic_check_box_checked:before {
-    content: "\004a";
+    content: "\00ce";
 }
 
 .mjd-icon-ic_check_box_unchecked:before {
-    content: "\004b";
+    content: "\00cf";
 }
+
+.mjd-icon-ic_cloud_on:before {
+    content: "\00da";
+}
+
+.mjd-icon-ic_cloud_off:before {
+    content: "\00d9";
+}
+
+.mjd-icon-ic_cloud_download:before {
+    content: "\00d8";
+}
+
+.mjd-icon-ic_cloud_upload:before {
+    content: "\00dc";
+}
+
+.mjd-icon-ic_flash_on:before {
+    content: "\0117";
+}
+
+.mjd-icon-ic_flash_off:before {
+    content: "\0116";
+}
+
+.mjd-icon-ic_layers_on:before {
+    content: "\014e";
+}
+
+.mjd-icon-ic_layers_off:before {
+    content: "\014d";
+}
+
+.mjd-icon-ic_lock_opened_outline:before {
+    content: "\0165";
+}
+
+.mjd-icon-ic_lock_closed_outline:before {
+    content: "\0164";
+}
+
+.mjd-icon-ic_mic_on:before {
+    content: "\016c";
+}
+
+.mjd-icon-ic_mic_off:before {
+    content: "\016b";
+}
+
+.mjd-icon-ic_radio_button_checked:before {
+    content: "\01a6";
+}
+
+.mjd-icon-ic_radio_button_unchecked:before {
+    content: "\01a7";
+}
+
+.mjd-icon-ic_thumb_up:before {
+    content: "\0202";
+}
+
+.mjd-icon-ic_thumb_down:before {
+    content: "\0201";
+}
+
+.mjd-icon-ic_trending_up:before {
+    content: "\020c";
+}
+
+.mjd-icon-ic_trending_down:before {
+    content: "\020a";
+}
+
+.mjd-icon-ic_visibility_on:before {
+    content: "\0214";
+}
+
+.mjd-icon-ic_visibility_off:before {
+    content: "\0213";
+}
+
+.mjd-icon-ic_volume_on:before {
+    content: "\0217";
+}
+
+.mjd-icon-ic_volume_off:before {
+    content: "\0216";
+}
+
+.mjd-icon-ic_wifi_on:before {
+    content: "\022a";
+}
+
+.mjd-icon-ic_wifi_off:before {
+    content: "\0229";
+}
+
+.mjd-icon-ic_biohazard_on:before {
+    content: "\00af";
+}
+
+.mjd-icon-ic_biohazard_off:before {
+    content: "\00ae";
+}
+
+.mjd-icon-ic_cam1_on:before {
+    content: "\00be";
+}
+
+.mjd-icon-ic_cam1_off:before {
+    content: "\00bd";
+}
+
+.mjd-icon-ic_cam2_on:before {
+    content: "\00c0";
+}
+
+.mjd-icon-ic_cam2_off:before {
+    content: "\00bf";
+}
+
+.mjd-icon-ic_device_on:before {
+    content: "\00ed";
+}
+
+.mjd-icon-ic_device_off:before {
+    content: "\00ec";
+}
+
+.mjd-icon-ic_firewall_on:before {
+    content: "\0113";
+}
+
+.mjd-icon-ic_firewall_off:before {
+    content: "\0112";
+}
+
+.mjd-icon-ic_light1_on:before {
+    content: "\0154";
+}
+
+.mjd-icon-ic_light1_off:before {
+    content: "\0153";
+}
+
+.mjd-icon-ic_light2_on:before {
+    content: "\0156";
+}
+
+.mjd-icon-ic_light2_off:before {
+    content: "\0155";
+}
+
+.mjd-icon-ic_light3_on:before {
+    content: "\0158";
+}
+
+.mjd-icon-ic_light3_off:before {
+    content: "\0157";
+}
+
+.mjd-icon-ic_propeller_on:before {
+    content: "\019c";
+}
+
+.mjd-icon-ic_propeller_off:before {
+    content: "\019b";
+}
+
+.mjd-icon-ic_radiation_on:before {
+    content: "\01a1";
+}
+
+.mjd-icon-ic_radiation_off:before {
+    content: "\01a0";
+}
+
+.mjd-icon-ic_shower1_on:before {
+    content: "\01cb";
+}
+
+.mjd-icon-ic_shower1_off:before {
+    content: "\01ca";
+}
+
+.mjd-icon-ic_shower2_on:before {
+    content: "\01cd";
+}
+
+.mjd-icon-ic_shower2_off:before {
+    content: "\01cc";
+}
+
+.mjd-icon-ic_skull1_on:before {
+    content: "\01df";
+}
+
+.mjd-icon-ic_skull1_off:before {
+    content: "\01de";
+}
+
+.mjd-icon-ic_skull2_on:before {
+    content: "\01e1";
+}
+
+.mjd-icon-ic_skull2_off:before {
+    content: "\01e0";
+}
+
+.mjd-icon-ic_speaker_on:before {
+    content: "\01e6";
+}
+
+.mjd-icon-ic_speaker_off:before {
+    content: "\01e5";
+}
+
+.mjd-icon-ic_tv_on:before {
+    content: "\020f";
+}
+
+.mjd-icon-ic_tv_off:before {
+    content: "\020e";
+}
+
+.mjd-icon-ic_aircon:before {
+    content: "\007c";
+}
+
+.mjd-icon-ic_ampermeter:before {
+    content: "\0086";
+}
+
+.mjd-icon-ic_battery_01:before {
+    content: "\0094";
+}
+
+.mjd-icon-ic_battery_02:before {
+    content: "\0095";
+}
+
+.mjd-icon-ic_battery_03:before {
+    content: "\0096";
+}
+
+.mjd-icon-ic_battery_04:before {
+    content: "\0097";
+}
+
+.mjd-icon-ic_battery_05:before {
+    content: "\0098";
+}
+
+.mjd-icon-ic_battery_06:before {
+    content: "\0099";
+}
+
+.mjd-icon-ic_battery_07:before {
+    content: "\009a";
+}
+
+.mjd-icon-ic_battery_charging:before {
+    content: "\00a2";
+}
+
+.mjd-icon-ic_boiler:before {
+    content: "\00b4";
+}
+
+.mjd-icon-ic_bomb:before {
+    content: "\00b5";
+}
+
+.mjd-icon-ic_candle:before {
+    content: "\00c2";
+}
+
+.mjd-icon-ic_car:before {
+    content: "\00c3";
+}
+
+.mjd-icon-ic_cctv_camera:before {
+    content: "\00c9";
+}
+
+.mjd-icon-ic_ceiling_light:before {
+    content: "\00ca";
+}
+
+.mjd-icon-ic_coffee_cup_01:before {
+    content: "\00de";
+}
+
+.mjd-icon-ic_coffee_cup_02:before {
+    content: "\00df";
+}
+
+.mjd-icon-ic_coffee_machine_01:before {
+    content: "\00e0";
+}
+
+.mjd-icon-ic_coffee_machine_02:before {
+    content: "\00e1";
+}
+
+.mjd-icon-ic_cooker_01:before {
+    content: "\00e3";
+}
+
+.mjd-icon-ic_cooker_02:before {
+    content: "\00e4";
+}
+
+.mjd-icon-ic_cooker_03:before {
+    content: "\00e5";
+}
+
+.mjd-icon-ic_fan_01:before {
+    content: "\00fd";
+}
+
+.mjd-icon-ic_fan_02:before {
+    content: "\00fe";
+}
+
+.mjd-icon-ic_fan_03:before {
+    content: "\00ff";
+}
+
+.mjd-icon-ic_fan_04:before {
+    content: "\0100";
+}
+
+.mjd-icon-ic_fan_05:before {
+    content: "\0101";
+}
+
+.mjd-icon-ic_fence:before {
+    content: "\0107";
+}
+
+.mjd-icon-ic_fire_01:before {
+    content: "\010f";
+}
+
+.mjd-icon-ic_fire_02:before {
+    content: "\0110";
+}
+
+.mjd-icon-ic_fire_containment:before {
+    content: "\0111";
+}
+
+.mjd-icon-ic_flame_vacuum:before {
+    content: "\0114";
+}
+
+.mjd-icon-ic_flower:before {
+    content: "\011c";
+}
+
+.mjd-icon-ic_fridge_01:before {
+    content: "\0120";
+}
+
+.mjd-icon-ic_fridge_02:before {
+    content: "\0121";
+}
+
+.mjd-icon-ic_heater_01:before {
+    content: "\012d";
+}
+
+.mjd-icon-ic_heater_02:before {
+    content: "\012e";
+}
+
+.mjd-icon-ic_heating:before {
+    content: "\012f";
+}
+
+.mjd-icon-ic_heating_fire:before {
+    content: "\0130";
+}
+
+.mjd-icon-ic_ignition:before {
+    content: "\013a";
+}
+
+.mjd-icon-ic_kettle_01:before {
+    content: "\0140";
+}
+
+.mjd-icon-ic_kettle_02:before {
+    content: "\0141";
+}
+
+.mjd-icon-ic_kitchen_vacuum_01:before {
+    content: "\0143";
+}
+
+.mjd-icon-ic_kitchen_vacuum_02:before {
+    content: "\0144";
+}
+
+.mjd-icon-ic_kitchen_vessel:before {
+    content: "\0145";
+}
+
+.mjd-icon-ic_led:before {
+    content: "\014f";
+}
+
+.mjd-icon-ic_light_bulb_01:before {
+    content: "\0159";
+}
+
+.mjd-icon-ic_light_bulb_02:before {
+    content: "\015a";
+}
+
+.mjd-icon-ic_light_bulb_03:before {
+    content: "\015b";
+}
+
+.mjd-icon-ic_light_bulb_04:before {
+    content: "\015c";
+}
+
+.mjd-icon-ic_light_bulb_05:before {
+    content: "\015d";
+}
+
+.mjd-icon-ic_light_bulb_06:before {
+    content: "\015e";
+}
+
+.mjd-icon-ic_light_bulb_07:before {
+    content: "\015f";
+}
+
+.mjd-icon-ic_light_plug:before {
+    content: "\0160";
+}
+
+.mjd-icon-ic_lightning:before {
+    content: "\0162";
+}
+
+.mjd-icon-ic_meat_chopper:before {
+    content: "\0169";
+}
+
+.mjd-icon-ic_mic:before {
+    content: "\016a";
+}
+
+.mjd-icon-ic_microwave:before {
+    content: "\016d";
+}
+
+.mjd-icon-ic_mixer:before {
+    content: "\016e";
+}
+
+.mjd-icon-ic_music:before {
+    content: "\0171";
+}
+
+.mjd-icon-ic_park_light:before {
+    content: "\017c";
+}
+
+.mjd-icon-ic_pc:before {
+    content: "\0180";
+}
+
+.mjd-icon-ic_portable_radio:before {
+    content: "\0193";
+}
+
+.mjd-icon-ic_power_fork:before {
+    content: "\0194";
+}
+
+.mjd-icon-ic_power_plug_01:before {
+    content: "\0195";
+}
+
+.mjd-icon-ic_power_plug_02:before {
+    content: "\0196";
+}
+
+.mjd-icon-ic_power_station:before {
+    content: "\0198";
+}
+
+.mjd-icon-ic_power_switch:before {
+    content: "\0199";
+}
+
+.mjd-icon-ic_protection:before {
+    content: "\019d";
+}
+
+.mjd-icon-ic_radiator_01:before {
+    content: "\01a2";
+}
+
+.mjd-icon-ic_radiator_02:before {
+    content: "\01a3";
+}
+
+.mjd-icon-ic_radiator_03:before {
+    content: "\01a4";
+}
+
+.mjd-icon-ic_radiator_04:before {
+    content: "\01a5";
+}
+
+.mjd-icon-ic_satellite:before {
+    content: "\01b1";
+}
+
+.mjd-icon-ic_satellite_dish:before {
+    content: "\01b2";
+}
+
+.mjd-icon-ic_solar_panel_01:before {
+    content: "\01e2";
+}
+
+.mjd-icon-ic_solar_panel_02:before {
+    content: "\01e3";
+}
+
+.mjd-icon-ic_star_01:before {
+    content: "\01e8";
+}
+
+.mjd-icon-ic_stereo_01:before {
+    content: "\01ec";
+}
+
+.mjd-icon-ic_stereo_02:before {
+    content: "\01ed";
+}
+
+.mjd-icon-ic_stereo_03:before {
+    content: "\01ee";
+}
+
+.mjd-icon-ic_stove_01:before {
+    content: "\01f2";
+}
+
+.mjd-icon-ic_stove_02:before {
+    content: "\01f3";
+}
+
+.mjd-icon-ic_sun:before {
+    content: "\01f4";
+}
+
+.mjd-icon-ic_table_light_01:before {
+    content: "\01fa";
+}
+
+.mjd-icon-ic_table_light_02:before {
+    content: "\01fb";
+}
+
+.mjd-icon-ic_table_light_03:before {
+    content: "\01fc";
+}
+
+.mjd-icon-ic_table_light_04:before {
+    content: "\01fd";
+}
+
+.mjd-icon-ic_table_light_05:before {
+    content: "\01fe";
+}
+
+.mjd-icon-ic_thermometer_01:before {
+    content: "\0200";
+}
+
+.mjd-icon-ic_torch:before {
+    content: "\0206";
+}
+
+.mjd-icon-ic_tri_pipe:before {
+    content: "\020d";
+}
+
+.mjd-icon-ic_wall:before {
+    content: "\0219";
+}
+
+.mjd-icon-ic_wall_light:before {
+    content: "\021a";
+}
+
+.mjd-icon-ic_wall_switch:before {
+    content: "\021b";
+}
+
+.mjd-icon-ic_washing_mashine_01:before {
+    content: "\021d";
+}
+
+.mjd-icon-ic_washing_mashine_02:before {
+    content: "\021e";
+}
+
+.mjd-icon-ic_washsink:before {
+    content: "\021f";
+}
+
+.mjd-icon-ic_watch:before {
+    content: "\0220";
+}
+
+.mjd-icon-ic_water:before {
+    content: "\0221";
+}
+
+.mjd-icon-ic_water_pump:before {
+    content: "\0222";
+}
+
+.mjd-icon-ic_water_tap_01:before {
+    content: "\0223";
+}
+
+.mjd-icon-ic_water_tap_02:before {
+    content: "\0224";
+}
+
+.mjd-icon-ic_water_tap_03:before {
+    content: "\0225";
+}
+
+.mjd-icon-ic_water_tap_04:before {
+    content: "\0226";
+}
+
+.mjd-icon-ic_water_vessel:before {
+    content: "\0227";
+}
+
+.mjd-icon-ic_weight:before {
+    content: "\0228";
+}
+
+.mjd-icon-ic_wireless_mouse:before {
+    content: "\022b";
+}
+
+.mjd-icon-ic_3d_rotation:before {
+    content: "\0072";
+}
+
+.mjd-icon-ic_accessibility:before {
+    content: "\0073";
+}
+
+.mjd-icon-ic_accessible:before {
+    content: "\0074";
+}
+
+.mjd-icon-ic_account_balance:before {
+    content: "\0075";
+}
+
+.mjd-icon-ic_account_balance_wallet:before {
+    content: "\0076";
+}
+
+.mjd-icon-ic_account_box:before {
+    content: "\0077";
+}
+
+.mjd-icon-ic_account_circle:before {
+    content: "\0078";
+}
+
+.mjd-icon-ic_add_shopping_cart:before {
+    content: "\007a";
+}
+
+.mjd-icon-ic_alarm:before {
+    content: "\0080";
+}
+
+.mjd-icon-ic_alarm_add:before {
+    content: "\0081";
+}
+
+.mjd-icon-ic_alarm_off:before {
+    content: "\0082";
+}
+
+.mjd-icon-ic_alarm_on:before {
+    content: "\0083";
+}
+
+.mjd-icon-ic_all_out:before {
+    content: "\0085";
+}
+
+.mjd-icon-ic_android:before {
+    content: "\0087";
+}
+
+.mjd-icon-ic_announcement:before {
+    content: "\0088";
+}
+
+.mjd-icon-ic_aspect_ratio:before {
+    content: "\008a";
+}
+
+.mjd-icon-ic_assessment:before {
+    content: "\008b";
+}
+
+.mjd-icon-ic_assignment:before {
+    content: "\008c";
+}
+
+.mjd-icon-ic_assignment_ind:before {
+    content: "\008d";
+}
+
+.mjd-icon-ic_assignment_late:before {
+    content: "\008e";
+}
+
+.mjd-icon-ic_assignment_return:before {
+    content: "\008f";
+}
+
+.mjd-icon-ic_assignment_returned:before {
+    content: "\0090";
+}
+
+.mjd-icon-ic_assignment_turned:before {
+    content: "\0091";
+}
+
+.mjd-icon-ic_autorenew:before {
+    content: "\0092";
+}
+
+.mjd-icon-ic_book:before {
+    content: "\00b6";
+}
+
+.mjd-icon-ic_bookmark:before {
+    content: "\00b7";
+}
+
+.mjd-icon-ic_bookmark_border:before {
+    content: "\00b8";
+}
+
+.mjd-icon-ic_bug_report:before {
+    content: "\00b9";
+}
+
+.mjd-icon-ic_build:before {
+    content: "\00ba";
+}
+
+.mjd-icon-ic_camera_enhance:before {
+    content: "\00c1";
+}
+
+.mjd-icon-ic_card_giftcard:before {
+    content: "\00c4";
+}
+
+.mjd-icon-ic_card_membership:before {
+    content: "\00c5";
+}
+
+.mjd-icon-ic_card_travel:before {
+    content: "\00c6";
+}
+
+.mjd-icon-ic_change_history:before {
+    content: "\00cd";
+}
+
+.mjd-icon-ic_check_circle:before {
+    content: "\00d0";
+}
+
+.mjd-icon-ic_chrome_reader_mode:before {
+    content: "\00d2";
+}
+
+.mjd-icon-ic_class:before {
+    content: "\00d3";
+}
+
+.mjd-icon-ic_code:before {
+    content: "\00dd";
+}
+
+.mjd-icon-ic_compare_arrows:before {
+    content: "\00e2";
+}
+
+.mjd-icon-ic_copyright:before {
+    content: "\00e6";
+}
+
+.mjd-icon-ic_credit_card:before {
+    content: "\00e7";
+}
+
+.mjd-icon-ic_dashboard:before {
+    content: "\00e8";
+}
+
+.mjd-icon-ic_date_range:before {
+    content: "\00e9";
+}
+
+.mjd-icon-ic_delete:before {
+    content: "\00ea";
+}
+
+.mjd-icon-ic_description:before {
+    content: "\00eb";
+}
+
+.mjd-icon-ic_dns:before {
+    content: "\00ee";
+}
+
+.mjd-icon-ic_done:before {
+    content: "\00ef";
+}
+
+.mjd-icon-ic_done_all:before {
+    content: "\00f0";
+}
+
+.mjd-icon-ic_donut_large:before {
+    content: "\00f1";
+}
+
+.mjd-icon-ic_donut_small:before {
+    content: "\00f2";
+}
+
+.mjd-icon-ic_eject:before {
+    content: "\00f3";
+}
+
+.mjd-icon-ic_event_seat:before {
+    content: "\00f7";
+}
+
+.mjd-icon-ic_exit_to_app:before {
+    content: "\00f8";
+}
+
+.mjd-icon-ic_explore:before {
+    content: "\00fa";
+}
+
+.mjd-icon-ic_extension:before {
+    content: "\00fb";
+}
+
+.mjd-icon-ic_face:before {
+    content: "\00fc";
+}
+
+.mjd-icon-ic_favorite:before {
+    content: "\0104";
+}
+
+.mjd-icon-ic_favorite_border:before {
+    content: "\0105";
+}
+
+.mjd-icon-ic_feedback:before {
+    content: "\0106";
+}
+
+.mjd-icon-ic_find_in_page:before {
+    content: "\010c";
+}
+
+.mjd-icon-ic_find_replace:before {
+    content: "\010d";
+}
+
+.mjd-icon-ic_fingerprint:before {
+    content: "\010e";
+}
+
+.mjd-icon-ic_flight_land:before {
+    content: "\0118";
+}
+
+.mjd-icon-ic_flight_takeoff:before {
+    content: "\0119";
+}
+
+.mjd-icon-ic_flip_to_back:before {
+    content: "\011a";
+}
+
+.mjd-icon-ic_flip_to_front:before {
+    content: "\011b";
+}
+
+.mjd-icon-ic_gavel:before {
+    content: "\0123";
+}
+
+.mjd-icon-ic_get_app:before {
+    content: "\0124";
+}
+
+.mjd-icon-ic_grade:before {
+    content: "\0128";
+}
+
+.mjd-icon-ic_group_work:before {
+    content: "\0129";
+}
+
+.mjd-icon-ic_help:before {
+    content: "\0131";
+}
+
+.mjd-icon-ic_help_outline:before {
+    content: "\0132";
+}
+
+.mjd-icon-ic_highlight_off:before {
+    content: "\0134";
+}
+
+.mjd-icon-ic_history:before {
+    content: "\0135";
+}
+
+.mjd-icon-ic_home:before {
+    content: "\0136";
+}
+
+.mjd-icon-ic_hourglass_empty:before {
+    content: "\0137";
+}
+
+.mjd-icon-ic_hourglass_full:before {
+    content: "\0138";
+}
+
+.mjd-icon-ic_https:before {
+    content: "\0139";
+}
+
+.mjd-icon-ic_important_devices:before {
+    content: "\013b";
+}
+
+.mjd-icon-ic_info:before {
+    content: "\013c";
+}
+
+.mjd-icon-ic_info_outline:before {
+    content: "\013d";
+}
+
+.mjd-icon-ic_input:before {
+    content: "\013e";
+}
+
+.mjd-icon-ic_invert_colors:before {
+    content: "\013f";
+}
+
+.mjd-icon-ic_label:before {
+    content: "\0146";
+}
+
+.mjd-icon-ic_label_outline:before {
+    content: "\0147";
+}
+
+.mjd-icon-ic_language:before {
+    content: "\014a";
+}
+
+.mjd-icon-ic_launch:before {
+    content: "\014b";
+}
+
+.mjd-icon-ic_lightbulb_outline:before {
+    content: "\0161";
+}
+
+.mjd-icon-ic_loyalty:before {
+    content: "\0167";
+}
+
+.mjd-icon-ic_markunread_mailbox:before {
+    content: "\0168";
+}
+
+.mjd-icon-ic_motorcycle:before {
+    content: "\016f";
+}
+
+.mjd-icon-ic_note_add:before {
+    content: "\0175";
+}
+
+.mjd-icon-ic_offline_pin:before {
+    content: "\0176";
+}
+
+.mjd-icon-ic_opacity:before {
+    content: "\0177";
+}
+
+.mjd-icon-ic_open_in_browser:before {
+    content: "\0178";
+}
+
+.mjd-icon-ic_open_with:before {
+    content: "\0179";
+}
+
+.mjd-icon-ic_pan_tool:before {
+    content: "\017b";
+}
+
+.mjd-icon-ic_perm_camera_mic:before {
+    content: "\0181";
+}
+
+.mjd-icon-ic_perm_contact_calendar:before {
+    content: "\0182";
+}
+
+.mjd-icon-ic_perm_data_setting:before {
+    content: "\0183";
+}
+
+.mjd-icon-ic_perm_device_information:before {
+    content: "\0184";
+}
+
+.mjd-icon-ic_perm_media:before {
+    content: "\0185";
+}
+
+.mjd-icon-ic_perm_phone_msg:before {
+    content: "\0186";
+}
+
+.mjd-icon-ic_perm_scan_wifi:before {
+    content: "\0187";
+}
+
+.mjd-icon-ic_pets:before {
+    content: "\0188";
+}
+
+.mjd-icon-ic_picture_in_picture:before {
+    content: "\0189";
+}
+
+.mjd-icon-ic_picture_in_picture_alt:before {
+    content: "\018a";
+}
+
+.mjd-icon-ic_play_for_work:before {
+    content: "\018e";
+}
+
+.mjd-icon-ic_polymer:before {
+    content: "\0192";
+}
+
+.mjd-icon-ic_power_settings_new:before {
+    content: "\0197";
+}
+
+.mjd-icon-ic_print:before {
+    content: "\019a";
+}
+
+.mjd-icon-ic_query_builder:before {
+    content: "\019e";
+}
+
+.mjd-icon-ic_question_answer:before {
+    content: "\019f";
+}
+
+.mjd-icon-ic_receipt:before {
+    content: "\01a8";
+}
+
+.mjd-icon-ic_record_voice_over:before {
+    content: "\01a9";
+}
+
+.mjd-icon-ic_reorder:before {
+    content: "\01aa";
+}
+
+.mjd-icon-ic_report_problem:before {
+    content: "\01ab";
+}
+
+.mjd-icon-ic_restore:before {
+    content: "\01ac";
+}
+
+.mjd-icon-ic_room:before {
+    content: "\01ae";
+}
+
+.mjd-icon-ic_rounded_corner:before {
+    content: "\01af";
+}
+
+.mjd-icon-ic_rowing:before {
+    content: "\01b0";
+}
+
+.mjd-icon-ic_settings:before {
+    content: "\01b5";
+}
+
+.mjd-icon-ic_settings_applications:before {
+    content: "\01b6";
+}
+
+.mjd-icon-ic_settings_backup_restore:before {
+    content: "\01b7";
+}
+
+.mjd-icon-ic_settings_bluetooth:before {
+    content: "\01b8";
+}
+
+.mjd-icon-ic_settings_brightness:before {
+    content: "\01b9";
+}
+
+.mjd-icon-ic_settings_cell:before {
+    content: "\01ba";
+}
+
+.mjd-icon-ic_settings_ethernet:before {
+    content: "\01bb";
+}
+
+.mjd-icon-ic_settings_input_antenna:before {
+    content: "\01bc";
+}
+
+.mjd-icon-ic_settings_input_component:before {
+    content: "\01bd";
+}
+
+.mjd-icon-ic_settings_input_hdmi:before {
+    content: "\01be";
+}
+
+.mjd-icon-ic_settings_input_svideo:before {
+    content: "\01bf";
+}
+
+.mjd-icon-ic_settings_overscan:before {
+    content: "\01c0";
+}
+
+.mjd-icon-ic_settings_phone:before {
+    content: "\01c1";
+}
+
+.mjd-icon-ic_settings_power:before {
+    content: "\01c2";
+}
+
+.mjd-icon-ic_settings_remote:before {
+    content: "\01c3";
+}
+
+.mjd-icon-ic_settings_voice:before {
+    content: "\01c4";
+}
+
+.mjd-icon-ic_shop:before {
+    content: "\01c5";
+}
+
+.mjd-icon-ic_shop_two:before {
+    content: "\01c6";
+}
+
+.mjd-icon-ic_shopping_basket:before {
+    content: "\01c7";
+}
+
+.mjd-icon-ic_shopping_cart:before {
+    content: "\01c8";
+}
+
+.mjd-icon-ic_speaker_notes:before {
+    content: "\01e4";
+}
+
+.mjd-icon-ic_spellcheck:before {
+    content: "\01e7";
+}
+
+.mjd-icon-ic_stars:before {
+    content: "\01e9";
+}
+
+.mjd-icon-ic_store:before {
+    content: "\01f1";
+}
+
+.mjd-icon-ic_supervisor_account:before {
+    content: "\01f5";
+}
+
+.mjd-icon-ic_swap_horiz:before {
+    content: "\01f6";
+}
+
+.mjd-icon-ic_swap_vert:before {
+    content: "\01f7";
+}
+
+.mjd-icon-ic_swap_vertical_circle:before {
+    content: "\01f8";
+}
+
+.mjd-icon-ic_system_update_alt:before {
+    content: "\01f9";
+}
+
+.mjd-icon-ic_theaters:before {
+    content: "\01ff";
+}
+
+.mjd-icon-ic_thumbs_up_down:before {
+    content: "\0203";
+}
+
+.mjd-icon-ic_timeline:before {
+    content: "\0204";
+}
+
+.mjd-icon-ic_toll:before {
+    content: "\0205";
+}
+
+.mjd-icon-ic_touch_app:before {
+    content: "\0207";
+}
+
+.mjd-icon-ic_track_changes:before {
+    content: "\0208";
+}
+
+.mjd-icon-ic_translate:before {
+    content: "\0209";
+}
+
+.mjd-icon-ic_trending_flat:before {
+    content: "\020b";
+}
+
+.mjd-icon-ic_verified_user:before {
+    content: "\0211";
+}
+
+.mjd-icon-ic_view_agenda:before {
+    content: "\0212";
+}
+
+.mjd-icon-ic_zoom_in:before {
+    content: "\022c";
+}
+
+.mjd-icon-ic_zoom_out:before {
+    content: "\022d";
+}
+
+.mjd-icon-ic_add_alert:before {
+    content: "\0079";
+}
+
+.mjd-icon-ic_add_to_queue:before {
+    content: "\007b";
+}
+
+.mjd-icon-ic_airplanemode_active:before {
+    content: "\007d";
+}
+
+.mjd-icon-ic_airplanemode_inactive:before {
+    content: "\007e";
+}
+
+.mjd-icon-ic_airplay_black:before {
+    content: "\007f";
+}
+
+.mjd-icon-ic_album:before {
+    content: "\0084";
+}
+
+.mjd-icon-ic_art_track:before {
+    content: "\0089";
+}
+
+.mjd-icon-ic_av_timer:before {
+    content: "\0093";
+}
+
+.mjd-icon-ic_battery_20:before {
+    content: "\009b";
+}
+
+.mjd-icon-ic_battery_30:before {
+    content: "\009c";
+}
+
+.mjd-icon-ic_battery_50:before {
+    content: "\009d";
+}
+
+.mjd-icon-ic_battery_60:before {
+    content: "\009e";
+}
+
+.mjd-icon-ic_battery_80:before {
+    content: "\009f";
+}
+
+.mjd-icon-ic_battery_90:before {
+    content: "\00a0";
+}
+
+.mjd-icon-ic_battery_alert:before {
+    content: "\00a1";
+}
+
+.mjd-icon-ic_battery_charging_20:before {
+    content: "\00a3";
+}
+
+.mjd-icon-ic_battery_charging_30:before {
+    content: "\00a4";
+}
+
+.mjd-icon-ic_battery_charging_50:before {
+    content: "\00a5";
+}
+
+.mjd-icon-ic_battery_charging_60:before {
+    content: "\00a6";
+}
+
+.mjd-icon-ic_battery_charging_80:before {
+    content: "\00a7";
+}
+
+.mjd-icon-ic_battery_charging_90:before {
+    content: "\00a8";
+}
+
+.mjd-icon-ic_battery_charging_full:before {
+    content: "\00a9";
+}
+
+.mjd-icon-ic_battery_full:before {
+    content: "\00aa";
+}
+
+.mjd-icon-ic_battery_unknown:before {
+    content: "\00ab";
+}
+
+.mjd-icon-ic_bluetooth:before {
+    content: "\00b0";
+}
+
+.mjd-icon-ic_bluetooth_connected:before {
+    content: "\00b1";
+}
+
+.mjd-icon-ic_bluetooth_disabled:before {
+    content: "\00b2";
+}
+
+.mjd-icon-ic_bluetooth_searching:before {
+    content: "\00b3";
+}
+
+.mjd-icon-ic_call:before {
+    content: "\00bb";
+}
+
+.mjd-icon-ic_call_end:before {
+    content: "\00bc";
+}
+
+.mjd-icon-ic_cast:before {
+    content: "\00c7";
+}
+
+.mjd-icon-ic_cast_connected:before {
+    content: "\00c8";
+}
+
+.mjd-icon-ic_center_focus_strong:before {
+    content: "\00cb";
+}
+
+.mjd-icon-ic_center_focus_weak:before {
+    content: "\00cc";
+}
+
+.mjd-icon-ic_closed_caption:before {
+    content: "\00d4";
+}
+
+.mjd-icon-ic_cloud:before {
+    content: "\00d5";
+}
+
+.mjd-icon-ic_cloud_circle:before {
+    content: "\00d6";
+}
+
+.mjd-icon-ic_cloud_done:before {
+    content: "\00d7";
+}
+
+.mjd-icon-ic_cloud_queue:before {
+    content: "\00db";
+}
+
+.mjd-icon-ic_equalizer:before {
+    content: "\00f4";
+}
+
+.mjd-icon-ic_error:before {
+    content: "\00f5";
+}
+
+.mjd-icon-ic_error_outline:before {
+    content: "\00f6";
+}
+
+.mjd-icon-ic_explicit:before {
+    content: "\00f9";
+}
+
+.mjd-icon-ic_fast_forward:before {
+    content: "\0102";
+}
+
+.mjd-icon-ic_fast_rewind:before {
+    content: "\0103";
+}
+
+.mjd-icon-ic_fiber_dvr:before {
+    content: "\0108";
+}
+
+.mjd-icon-ic_fiber_manual_record:before {
+    content: "\0109";
+}
+
+.mjd-icon-ic_fiber_new:before {
+    content: "\010a";
+}
+
+.mjd-icon-ic_fiber_pin:before {
+    content: "\010b";
+}
+
+.mjd-icon-ic_flash_auto:before {
+    content: "\0115";
+}
+
+.mjd-icon-ic_forward_10:before {
+    content: "\011d";
+}
+
+.mjd-icon-ic_forward_30:before {
+    content: "\011e";
+}
+
+.mjd-icon-ic_forward_5:before {
+    content: "\011f";
+}
+
+.mjd-icon-ic_games:before {
+    content: "\0122";
+}
+
+.mjd-icon-ic_gps_fixed:before {
+    content: "\0125";
+}
+
+.mjd-icon-ic_gps_not_fixed:before {
+    content: "\0126";
+}
+
+.mjd-icon-ic_gps_off:before {
+    content: "\0127";
+}
+
+.mjd-icon-ic_hd:before {
+    content: "\012a";
+}
+
+.mjd-icon-ic_headset:before {
+    content: "\012b";
+}
+
+.mjd-icon-ic_hearing:before {
+    content: "\012c";
+}
+
+.mjd-icon-ic_high_quality:before {
+    content: "\0133";
+}
+
+.mjd-icon-ic_keyboard:before {
+    content: "\0142";
+}
+
+.mjd-icon-ic_library_add:before {
+    content: "\0150";
+}
+
+.mjd-icon-ic_library_books:before {
+    content: "\0151";
+}
+
+.mjd-icon-ic_library_music:before {
+    content: "\0152";
+}
+
+.mjd-icon-ic_loop_black:before {
+    content: "\0166";
+}
+
+.mjd-icon-ic_movie:before {
+    content: "\0170";
+}
+
+.mjd-icon-ic_music_video:before {
+    content: "\0172";
+}
+
+.mjd-icon-ic_new_releases:before {
+    content: "\0173";
+}
+
+.mjd-icon-ic_not_interested:before {
+    content: "\0174";
+}
+
+.mjd-icon-ic_palette:before {
+    content: "\017a";
+}
+
+.mjd-icon-ic_pause:before {
+    content: "\017d";
+}
+
+.mjd-icon-ic_pause_circle_filled:before {
+    content: "\017e";
+}
+
+.mjd-icon-ic_pause_circle_outline:before {
+    content: "\017f";
+}
+
+.mjd-icon-ic_play_arrow:before {
+    content: "\018b";
+}
+
+.mjd-icon-ic_play_circle_filled:before {
+    content: "\018c";
+}
+
+.mjd-icon-ic_play_circle_outline:before {
+    content: "\018d";
+}
+
+.mjd-icon-ic_playlist_add:before {
+    content: "\018f";
+}
+
+.mjd-icon-ic_playlist_add_check:before {
+    content: "\0190";
+}
+
+.mjd-icon-ic_playlist_play:before {
+    content: "\0191";
+}
+
+.mjd-icon-ic_ring_volume:before {
+    content: "\01ad";
+}
+
+.mjd-icon-ic_screen_share:before {
+    content: "\01b3";
+}
+
+.mjd-icon-ic_sd_storage:before {
+    content: "\01b4";
+}
+
+.mjd-icon-ic_shuffle:before {
+    content: "\01ce";
+}
+
+.mjd-icon-ic_signal_cellular_0_bar:before {
+    content: "\01cf";
+}
+
+.mjd-icon-ic_signal_cellular_1_bar:before {
+    content: "\01d0";
+}
+
+.mjd-icon-ic_signal_cellular_2_bar:before {
+    content: "\01d1";
+}
+
+.mjd-icon-ic_signal_cellular_3_bar:before {
+    content: "\01d2";
+}
+
+.mjd-icon-ic_signal_cellular_4_bar:before {
+    content: "\01d3";
+}
+
+.mjd-icon-ic_signal_cellular_null:before {
+    content: "\01d4";
+}
+
+.mjd-icon-ic_signal_cellular_off:before {
+    content: "\01d5";
+}
+
+.mjd-icon-ic_signal_wifi_0_bar:before {
+    content: "\01d6";
+}
+
+.mjd-icon-ic_signal_wifi_1_bar:before {
+    content: "\01d7";
+}
+
+.mjd-icon-ic_signal_wifi_2_bar:before {
+    content: "\01d8";
+}
+
+.mjd-icon-ic_signal_wifi_3_bar:before {
+    content: "\01d9";
+}
+
+.mjd-icon-ic_signal_wifi_4_bar:before {
+    content: "\01da";
+}
+
+.mjd-icon-ic_signal_wifi_off:before {
+    content: "\01db";
+}
+
+.mjd-icon-ic_skip_next:before {
+    content: "\01dc";
+}
+
+.mjd-icon-ic_skip_previous:before {
+    content: "\01dd";
+}
+
+.mjd-icon-ic_stay_primary_landscape:before {
+    content: "\01ea";
+}
+
+.mjd-icon-ic_stay_primary_portrait:before {
+    content: "\01eb";
+}
+
+.mjd-icon-ic_stop:before {
+    content: "\01ef";
+}
+
+.mjd-icon-ic_stop_screen_share:before {
+    content: "\01f0";
+}
+
+.mjd-icon-ic_usb:before {
+    content: "\0210";
+}
+
+.mjd-icon-ic_voicemail:before {
+    content: "\0215";
+}
+
+.mjd-icon-ic_vpn_key:before {
+    content: "\0218";
+}
+
+.mjd-icon-ic_warning:before {
+    content: "\021c";
+}
+

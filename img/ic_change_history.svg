@@ -5,7 +5,7 @@
    width="1000"
    height="1000"
    version="1.1"
-   id="svg7"
+   id="svg8"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -24,16 +24,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     id="layer1">
-    <g
-       id="g476"
-       transform="matrix(10,0,0,10,-8662.9956,-1151.9824)">
-      <path
-         class="fil0"
-         d="m 918.47312,127.14735 42.46762,73.56598 c 1.0031,1.67195 -0.223,3.78976 -2.1178,3.78976 h -85.04672 c -1.89488,0 -3.12098,-2.11781 -2.11781,-3.78976 l 42.46763,-73.56598 c 1.00317,-1.67195 3.34391,-1.67195 4.34708,0 z m -2.22927,13.15271 -32.21298,55.7318 h 64.42587 z"
-         id="path30"
-         style="stroke-width:0.111464" />
-    </g>
-  </g>
+  <path
+     style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+     d="M 500,309.64844 787.55078,770 H 212.44922 L 500,309.64844 M 500,140 50,860 h 900 z m 0,0"
+     id="path6" />
 </svg>
