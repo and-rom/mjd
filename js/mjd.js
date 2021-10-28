@@ -17,7 +17,8 @@ function init() {
             port: parseInt($('#port').val()),
             username: $('#username').val(),
             password: $('#password').val(),
-            clientid: $('#clientid').val()
+            clientid: $('#clientid').val(),
+            autoconnect: $('#autoconnect').is(":checked")
         }
         storeSettings();
         $('#settingsFormContainer').hide();
@@ -26,6 +27,7 @@ function init() {
     $('#connectBtn').click(connect);
     $('#receiveMetricsBtn').click(receiveMetrics);
     loadSettings();
+    if (settings.autoconnect) connect();
 }
 
 function loadSettings() {
@@ -47,6 +49,7 @@ function connectionSettings() {
             $('#username').val(settings.username);
             $('#password').val(settings.password);
             $('#clientid').val(settings.clientid);
+            $('#autoconnect').prop('checked', settings.autoconnect);
         }
         $('#settingsFormContainer').show();
         if ($('#clientid').val() == "") {
