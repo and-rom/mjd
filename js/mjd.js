@@ -77,6 +77,7 @@ function createMetrics() {
         var elem = $('#metricTemplate').clone();
         $(elem).click(publish);
         $(elem).attr('id', "id_" + metric.id);
+        $(elem).attr('title', metric.topic.split("/", 1)[0]);
         $(".name", elem).html(metric.name);
         $(elem).appendTo("#metrics");
 
