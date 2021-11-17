@@ -140,6 +140,7 @@ function updateMetric(idx, payload = null, lastActivity = null) {
 }
 
 function updateMetricLast() {
+    if (!metrics) return;
     metrics.forEach(function(metric) {
         var el = elapsed(metric.lastActivity);
         $('#id_' + metric.id + ' .last').html(metric.lastActivity != 0 ? el[1] : "");
