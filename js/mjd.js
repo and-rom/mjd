@@ -7,7 +7,7 @@ var app = {
     topics: [],
 
     init: function () {
-        $('#connectionSettingsBtn').click(this.connectionSettings)
+        $('#connectionSettingsBtn').click(this.connectionSettings.bind(this))
         $("#settingsForm").submit(function( event ) {
             event.preventDefault();
             settings = {
@@ -23,8 +23,8 @@ var app = {
         });
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
-        $('#connectBtn').click(this.connect);
-        $('#receiveMetricsBtn').click(this.receiveMetrics);
+        $('#connectBtn').click(this.connect.bind(this));
+        $('#receiveMetricsBtn').click(this.receiveMetrics.bind(this));
         this.loadSettings();
         if (this.settings.autoconnect) this.connect();
     },
@@ -67,7 +67,7 @@ var app = {
         this.topics = [];
         this.metrics.forEach((metric, idx) => {
             var elem = $('#metricTemplate').clone();
-            $(elem).click(this.publish);
+            $(elem).click(this.metricPublish.bind(this));
             $(elem).attr('id', "id_" + metric.id);
             $(elem).attr('title', metric.topic.split("/", 1)[0]);
             $(".name", elem).html(metric.name);
@@ -250,7 +250,7 @@ var app = {
     onConnected: function () {
         console.log("Connected to " + this.settings.host);
         $('#connectBtn').off('click', this.connect);
-        $('#connectBtn').click(this.disconnect);
+        $('#connectBtn').click(this.disconnect.bind(this));
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-disconnect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_connect").addClass("mjd-icon-ic_disconnect");
         this.createMetrics();
@@ -264,7 +264,7 @@ var app = {
         }
         $('.loader').hide();
         $('#connectBtn').off('click' ,this.disconnect);
-        $('#connectBtn').click(this.connect);
+        $('#connectBtn').click(this.connect.bind(this));
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
         clearInterval(this.timer);
