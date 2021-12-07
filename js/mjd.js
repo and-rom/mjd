@@ -88,8 +88,8 @@ function updateMetric(idx, payload = null, lastActivity = null) {
     var metric = metrics[idx];
     var elem = $('#id_' + metric.id);
 
-    payload = payload !== null ? payload : metric.lastPayload;
-    lastActivity = lastActivity !== null ? lastActivity : metric.lastActivity;
+    payload = payload !== null ? payload : metric.lastPayload ? metric.lastPayload : "";
+    lastActivity = lastActivity !== null ? lastActivity : metric.lastActivity ? metric.lastActivity : "";
 
     if (metric.jsonPath != "") {
         var targetPayload = payload != "" ? jsonPath(JSON.parse(payload), metric.jsonPath) : payload;
