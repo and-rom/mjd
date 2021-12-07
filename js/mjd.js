@@ -102,6 +102,7 @@ function updateMetric(idx, payload = null, lastActivity = null) {
     switch (metric.type) {
         case 1: // text
             $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + targetPayload + metric.postfix);
+            fitty("#id_" + metric.id + " .body .mjd-text", { maxSize: 160 });
             break;
         case 2: //switch
             if (targetPayload != metric.payloadOn && payload != metric.payloadOff ) return;
