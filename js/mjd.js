@@ -262,7 +262,7 @@ var app = {
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-disconnect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_connect").addClass("mjd-icon-ic_disconnect");
         this.createMetrics();
-        this.timer = setInterval(this.updateMetricLast.bind(this),1000);
+        this.timer = setInterval(this.updateMetricLast.bind(this), 500);
     },
 
     onConnectionLost: function (responseObject) {
