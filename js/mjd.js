@@ -100,7 +100,7 @@ var app = {
         switch (metric.type) {
             case 1: // text
                 $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + targetPayload + metric.postfix);
-                fitty("#id_" + metric.id + " .body .mjd-text", { maxSize: 160 });
+                fitty("#id_" + metric.id + " .body .mjd-text", {minSize: 10, maxSize: {"SMALL":30, "MEDIUM":60, "LARGE":90}[metric.mainTextSize] });
                 break;
             case 2: //switch
                 if (targetPayload != metric.payloadOn && payload != metric.payloadOff ) return;
