@@ -176,7 +176,7 @@ var app = {
         }
     },
 
-    publish: function (e) {
+    metricPublish: function (e) {
         var metric = this.metrics.find((metric) => metric.id === e.currentTarget.id.substring(3));
 
         if (!metric.enablePub) return;
@@ -213,8 +213,12 @@ var app = {
                 console.log("Unknown type");
         }
         $('.loader', e.currentTarget).show();
-        this.mqtt.send(topic, payload, metric.qos, metric.retained);
+        this.publish(topic, payload, metric.retained, metric.qos);
     },
+
+     publish: function (topic, payload, retained, qos) {
+        this.mqtt.publish(topic, payload, qos, retained);
+     },
 
     connect: function () {
         console.log("Connecting to " + this.settings.host + " " + this.settings.port );
