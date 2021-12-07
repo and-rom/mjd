@@ -82,12 +82,12 @@ var app = {
         });
     },
 
-    updateMetric: function (idx, payload = null, lastActivity = null) {
+    updateMetric: function (idx) {
         var metric = this.metrics[idx];
         var elem = $('#id_' + metric.id);
 
-        payload = payload !== null ? payload : metric.lastPayload ? metric.lastPayload : "";
-        lastActivity = lastActivity !== null ? lastActivity : metric.lastActivity ? metric.lastActivity : "";
+        payload = metric.payload ? metric.payload : metric.lastPayload ? metric.lastPayload : "";
+        lastActivity = metric.activity ? metric.activity : metric.lastActivity ? metric.lastActivity : "";
 
         if (metric.jsonPath != "") {
             var targetPayload = payload != "" ? jsonPath(JSON.parse(payload), metric.jsonPath) : payload;
@@ -282,7 +282,9 @@ var app = {
             this.metrics.forEach((metric, idx) => {
                 if (metric.topic === msg.destinationName) {
                     $('#id_' + metric.id + ' .loader').hide();
-                    this.updateMetric(idx, msg.payloadString, Math.trunc(Date.now()/1000));
+                    this.metrics[idx].payload = msg.payloadString;
+                    this.metrics[idx].activity = Math.trunc(Date.now()/1000);
+                    this.updateMetric(idx);
                 }
             });
         }
