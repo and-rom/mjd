@@ -23,7 +23,8 @@ function init() {
         storeSettings();
         $('#settingsFormContainer').hide();
     });
-    $("#connectBtn").html($('#connectBtn').attr('data-connect-str'));
+    $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
+    $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
     $('#connectBtn').click(connect);
     $('#receiveMetricsBtn').click(receiveMetrics);
     loadSettings();
@@ -227,7 +228,8 @@ function onConnect() {
     console.log("Connected to " + settings.host);
     $('#connectBtn').off('click',connect);
     $('#connectBtn').click(disconnect);
-    $("#connectBtn").html($('#connectBtn').attr('data-disconnect-str'));
+    $("#connectBtn").prop("title", $('#connectBtn').attr('data-disconnect-str'));
+    $("#connectBtn i").removeClass("mjd-icon-ic_connect").addClass("mjd-icon-ic_disconnect");
     createMetrics();
     t = setInterval(updateMetricLast,1000);
 }
@@ -237,7 +239,8 @@ function onConnectionLost() {
     $('.loader').hide();
     $('#connectBtn').off('click',disconnect);
     $('#connectBtn').click(connect);
-    $("#connectBtn").html($('#connectBtn').attr('data-connect-str'));
+    $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
+    $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
     clearInterval(t);
 }
 

@@ -3,7 +3,13 @@ body {
     background-color: #000000;
 }
 
-#metricTemplate,
+.btn {
+    color: white;
+    background-color: black;
+    border: 0;
+    cursor: pointer;
+}
+
 #settingsFormContainer {
     display:none;
 }
@@ -51,6 +57,8 @@ body {
 
 .metric .body .mjd-text {
     height: 160px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     line-height: 160px;
     white-space: nowrap;
     font-family: sans-serif;
