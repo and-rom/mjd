@@ -1,4 +1,4 @@
-var t;
+var timer;
 var mqtt;
 var settings;
 var metrics;
@@ -57,13 +57,6 @@ function connectionSettings() {
             $('#clientid').val("mjd-" + Math.floor(Math.random() * 10000));
         }
     }
-}
-function connect() {
-    MQTTconnect();
-}
-
-function disconnect() {
-    mqtt.disconnect();
 }
 
 function receiveMetrics() {
@@ -224,14 +217,43 @@ function publish(e) {
     mqtt.send(topic, payload, metric.qos, metric.retained);
 }
 
-function onConnect() {
+function connect() {
+    console.log("Connecting to " + settings.host + " " + settings.port );
+    mqtt = new Paho.Client(settings.host, settings.port, settings.clientid);
+    var options = {
+        useSSL: true,
+        timeout: 3,
+        userName: settings.username,
+        password: settings.password,
+        onSuccess: onSuccess,
+        onFailure: onFailure
+    };
+    mqtt.onConnected = onConnected;
+    mqtt.onConnectionLost = onConnectionLost;
+    mqtt.onMessageArrived = onMessageArrived;
+    mqtt.connect(options);
+}
+
+function disconnect() {
+    mqtt.disconnect();
+}
+
+function onSuccess(message) {
+    console.log("Connection attempt to " + settings.host + " succeed");
+}
+
+function onFailure(message) {
+    console.log("Connection attempt to " + settings.host + " failed");
+}
+
+function onConnected() {
     console.log("Connected to " + settings.host);
     $('#connectBtn').off('click',connect);
     $('#connectBtn').click(disconnect);
     $("#connectBtn").prop("title", $('#connectBtn').attr('data-disconnect-str'));
     $("#connectBtn i").removeClass("mjd-icon-ic_connect").addClass("mjd-icon-ic_disconnect");
     createMetrics();
-    t = setInterval(updateMetricLast,1000);
+    timer = setInterval(updateMetricLast,1000);
 }
 
 function onConnectionLost() {
@@ -241,11 +263,7 @@ function onConnectionLost() {
     $('#connectBtn').click(connect);
     $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
     $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
-    clearInterval(t);
-}
-
-function onFailure(message) {
-    console.log("Connection attempt to " + settings.host + " failed");
+    clearInterval(timer);
 }
 
 function onMessageArrived(msg) {
@@ -264,20 +282,4 @@ function onMessageArrived(msg) {
             }
         })
     }
-}
-
-function MQTTconnect() {
-    console.log("Connecting to " + settings.host + " " + settings.port );
-    mqtt = new Paho.MQTT.Client(settings.host, settings.port, settings.clientid);
-    var options = {
-        useSSL: true,
-        timeout: 3,
-        userName: settings.username,
-        password: settings.password,
-        onSuccess: onConnect,
-        onFailure: onFailure
-    };
-    mqtt.onMessageArrived = onMessageArrived;
-    mqtt.onConnectionLost = onConnectionLost;
-    mqtt.connect(options);
 }
