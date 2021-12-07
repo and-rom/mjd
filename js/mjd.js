@@ -276,7 +276,7 @@ var app = {
         if (msg.destinationName == "metrics/exchange") {
             this.mqtt.unsubscribe("metrics/exchange");
             this.metrics = JSON.parse(msg.payloadString);
-            this.localStorage.setItem('metrics', JSON.stringify(this.metrics));
+            localStorage.setItem('metrics', JSON.stringify(this.metrics));
             this.createMetrics();
         } else {
             this.metrics.forEach((metric, idx) => {
