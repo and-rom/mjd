@@ -1772,3 +1772,26 @@
     content: "\021c";
 }
 
+.mjd-icon-ic_lamp_on:before {
+    content: "\022e";
+}
+
+.mjd-icon-ic_lamp_off:before {
+    content: "\022f";
+}
+
+.mjd-icon-ic_lock_closed:before {
+    content: "\0230";
+}
+
+.mjd-icon-ic_shortcut:before {
+    content: "\0231";
+}
+
+.mjd-icon-ic_connect:before {
+    content: "\0232";
+}
+
+.mjd-icon-ic_disconnect:before {
+    content: "\0233";
+}
