@@ -86,6 +86,10 @@ var app = {
         var metric = this.metrics[idx];
         var elem = $('#id_' + metric.id);
 
+        if (metric.jsOnReceive != "") {
+            eval(metric.jsOnReceive.replace(/event/g, "metric").replace(/app/g, "this"));
+        }
+
         payload = metric.payload ? metric.payload : metric.lastPayload ? metric.lastPayload : "";
         lastActivity = metric.activity ? metric.activity : metric.lastActivity ? metric.lastActivity : "";
 
