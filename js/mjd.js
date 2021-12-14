@@ -183,6 +183,10 @@ var app = {
     metricPublish: function (e) {
         var metric = this.metrics.find((metric) => metric.id === e.currentTarget.id.substring(3));
 
+        if (metric.jsOnTap != "") {
+            eval(metric.jsOnTap.replace(/event/g, "metric").replace(/app/g, "this"));
+        }
+
         if (!metric.enablePub) return;
 
         if (typeof metric.topicPub != "undefined") {
@@ -223,6 +227,10 @@ var app = {
      publish: function (topic, payload, retained, qos) {
         this.mqtt.publish(topic, payload, qos, retained);
      },
+
+    openUri: function (uri) {
+        window.open(uri);
+    },
 
     connect: function () {
         console.log("Connecting to " + this.settings.host + " " + this.settings.port );
