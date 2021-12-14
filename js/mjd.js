@@ -224,9 +224,9 @@ var app = {
         this.publish(topic, payload, metric.retained, metric.qos);
     },
 
-     publish: function (topic, payload, retained, qos) {
+    publish: function (topic, payload, retained, qos) {
         this.mqtt.publish(topic, payload, qos, retained);
-     },
+    },
 
     openUri: function (uri) {
         window.open(uri);
