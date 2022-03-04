@@ -10,7 +10,7 @@ var app = {
         $('#connectionSettingsBtn').click(this.connectionSettings.bind(this))
         $("#settingsForm").submit(function( event ) {
             event.preventDefault();
-            settings = {
+            this.settings = {
                 host: $('#host').val(),
                 port: parseInt($('#port').val()),
                 username: $('#username').val(),
@@ -20,13 +20,13 @@ var app = {
             }
             this.storeSettings();
             $('#settingsFormContainer').hide();
-        });
+        }.bind(this));
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
         $('#connectBtn').click(this.connect.bind(this));
         $('#receiveMetricsBtn').click(this.receiveMetrics.bind(this));
         this.loadSettings();
-        if (this.settings.autoconnect) this.connect();
+        if (this.settings && this.settings.autoconnect) this.connect();
     },
 
     loadSettings: function () {
