@@ -1,3 +1,8 @@
+const APP_NAME = 'MJD';
+const storageKey = key => `${APP_NAME}.${key}`;
+const storageSet = (key, value) => localStorage.setItem(storageKey(key), value);
+const storageGet = key => localStorage.getItem(storageKey(key));
+
 var app = {
     //timer: null,
     //mqtt: null,
@@ -30,12 +35,12 @@ var app = {
     },
 
     loadSettings: function () {
-        this.settings = JSON.parse(localStorage.getItem('settings'));
-        this.metrics = JSON.parse(localStorage.getItem('metrics'));
+        this.settings = JSON.parse(storageGet('settings'));
+        this.metrics = JSON.parse(storageGet('metrics'));
     },
 
     storeSettings: function () {
-        localStorage.setItem('settings', JSON.stringify(this.settings));
+        storageSet('settings', JSON.stringify(this.settings));
     },
 
     connectionSettings: function () {
@@ -292,7 +297,7 @@ var app = {
         if (msg.destinationName == "metrics/exchange") {
             this.mqtt.unsubscribe("metrics/exchange");
             this.metrics = JSON.parse(msg.payloadString);
-            localStorage.setItem('metrics', JSON.stringify(this.metrics));
+            storageSet('metrics', JSON.stringify(this.metrics));
             this.createMetrics();
         } else {
             this.metrics.forEach((metric, idx) => {
