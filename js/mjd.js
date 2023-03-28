@@ -168,7 +168,6 @@ var app = {
                 console.log("Unknown type");
         }
 
-
         $(".last", elem).html(lastActivity != 0 ? this.elapsed(metric.getSecondsSinceLastActivity())[1] : "");
 
     },
