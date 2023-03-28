@@ -132,6 +132,10 @@ var app = {
 
         targetPayload = typeof targetPayload !== "undefined" ? targetPayload : metric.payloadOff;
 
+        metric.lastPayload = payload;
+        if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
+        metric.lastActivity = lastActivity;
+
         switch (metric.type) {
             case 1: // text
                 $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + targetPayload + metric.postfix);
@@ -160,10 +164,6 @@ var app = {
 
 
         $(".last", elem).html(lastActivity != 0 ? this.elapsed(metric.getSecondsSinceLastActivity())[1] : "");
-
-        metric.lastPayload = payload;
-        if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
-        metric.lastActivity = lastActivity;
 
     },
 
