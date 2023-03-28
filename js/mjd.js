@@ -3,6 +3,30 @@ const storageKey = key => `${APP_NAME}.${key}`;
 const storageSet = (key, value) => localStorage.setItem(storageKey(key), value);
 const storageGet = key => localStorage.getItem(storageKey(key));
 
+var metric$ = {
+    blink: null,
+    color: "",
+    data: "",
+    iconColor: "",
+    lastActivityString: "",
+    name: "",
+    on: null,
+    payload: "",
+    preventDefault: null,
+    progress: null,
+    progressColor: null,
+    text: null,
+    textColor: null,
+    topic: "",
+    url: "",
+    getLastPayload: function () {
+        return this.lastPayload;
+    },
+    getSecondsSinceLastActivity: function () {
+        return Math.round((new Date() - new Date(this.lastActivity*1000))/1000);
+    }
+}
+
 var app = {
     //timer: null,
     //mqtt: null,
@@ -71,6 +95,8 @@ var app = {
         $("#metrics").empty();
         this.topics = [];
         this.metrics.forEach((metric, idx) => {
+            metric.__proto__ = metric$;
+
             var elem = $('#metricTemplate').clone();
             $(elem).click(this.metricPublish.bind(this));
             $(elem).attr('id', "id_" + metric.id);
@@ -133,7 +159,7 @@ var app = {
         }
 
 
-        $(".last", elem).html(lastActivity != 0 ? this.elapsed(lastActivity)[1] : "");
+        $(".last", elem).html(lastActivity != 0 ? this.elapsed(metric.getSecondsSinceLastActivity())[1] : "");
 
         metric.lastPayload = payload;
         if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
@@ -144,7 +170,7 @@ var app = {
     updateMetricLast: function () {
         if (!this.metrics) return;
         this.metrics.forEach((metric) => {
-            var el = this.elapsed(metric.lastActivity);
+            var el = this.elapsed(metric.getSecondsSinceLastActivity());
             $('#id_' + metric.id + ' .last').html(metric.lastActivity != 0 ? el[1] : "");
             if (metric.jsBlinkExpression != "") {
                 var val = metric.jsonPath != "" ? metric.lastJsonPathValue : metric.lastPayload;
@@ -158,17 +184,15 @@ var app = {
         });
     },
 
-    elapsed: function  (timestamp) {
-        var delta = Math.round((new Date() - new Date(timestamp*1000))/1000);
-
+    elapsed: function  (seconds) {
         var i;
 
-        if (delta < 60) {i = delta; return [delta, i + ' секунд' + ['у','ы',''][this.getPluralType(i)] + ' назад'];}
-        else if (delta < 3600) {i = Math.round(delta/60); return [delta, i + ' минут' + ['у','ы',''][this.getPluralType(i)] + ' назад'];}
-        else if (delta < 86400 ) {i = Math.round(delta/3600); return [delta, i + ' час' + ['','а','ов'][this.getPluralType(i)] + ' назад'];}
-        else if (delta < 2592000) {i = Math.round(delta/86400); return [delta, i + ' ' + ['день','дня','дней'][this.getPluralType(i)] + ' назад'];}
-        else if (delta < 31536000) {i = Math.round(delta/2592000); return [delta, i + ' месяц' + ['','а','ев'][this.getPluralType(i)] + ' назад'];}
-        else {i = Math.round(delta/31536000); return [delta, i + ' ' + ['год','года','лет'][this.getPluralType(i)] + ' назад'];}
+        if (seconds < 60) {i = seconds; return [seconds, i + ' секунд' + ['у','ы',''][this.getPluralType(i)] + ' назад'];}
+        else if (seconds < 3600) {i = Math.round(seconds/60); return [seconds, i + ' минут' + ['у','ы',''][this.getPluralType(i)] + ' назад'];}
+        else if (seconds < 86400 ) {i = Math.round(seconds/3600); return [seconds, i + ' час' + ['','а','ов'][this.getPluralType(i)] + ' назад'];}
+        else if (seconds < 2592000) {i = Math.round(seconds/86400); return [seconds, i + ' ' + ['день','дня','дней'][this.getPluralType(i)] + ' назад'];}
+        else if (seconds < 31536000) {i = Math.round(seconds/2592000); return [seconds, i + ' месяц' + ['','а','ев'][this.getPluralType(i)] + ' назад'];}
+        else {i = Math.round(seconds/31536000); return [seconds, i + ' ' + ['год','года','лет'][this.getPluralType(i)] + ' назад'];}
     },
 
     getPluralType: function (number) {
@@ -295,6 +319,7 @@ var app = {
         console.log(msg.destinationName);
         console.log(msg.payloadString);
         if (msg.destinationName == "metrics/exchange") {
+            console.log("Exchanging metrics");
             this.mqtt.unsubscribe("metrics/exchange");
             this.metrics = JSON.parse(msg.payloadString);
             storageSet('metrics', JSON.stringify(this.metrics));
