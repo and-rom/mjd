@@ -142,7 +142,9 @@ var app = {
 
         switch (metric.type) {
             case 1: // text
-                $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + targetPayload + metric.postfix);
+                let textColorClass = "mjd-color" + (Number.isInteger(metric.textColor) && metric.textColor < 0 ? metric.textColor : "");
+                let textColor = textColorClass == "mjd-color" ? { 'color': metric.textColor } : {};
+                $(".body span", elem).removeClass().addClass("mjd-text").addClass(textColorClass).css(textColor).html(metric.prefix + targetPayload + metric.postfix);
                 fitty("#id_" + metric.id + " .body .mjd-text", {minSize: 10, maxSize: {"SMALL":30, "MEDIUM":60, "LARGE":90}[metric.mainTextSize] });
                 break;
             case 2: //switch
