@@ -136,6 +136,10 @@ var app = {
         if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
         metric.lastActivity = lastActivity;
 
+        if (metric.jsOnDisplay != "") {
+            eval(metric.jsOnDisplay.replace(/event/g, "metric").replace(/app/g, "this"));
+        }
+
         switch (metric.type) {
             case 1: // text
                 $(".body span", elem).removeClass().addClass("mjd-text").addClass("mjd-color" + metric.textColor).html(metric.prefix + targetPayload + metric.postfix);
