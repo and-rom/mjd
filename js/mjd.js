@@ -41,6 +41,7 @@ var app = {
             event.preventDefault();
             this.settings = {
                 host: $('#host').val(),
+                ssl: $('#ssl').is(":checked"),
                 port: parseInt($('#port').val()),
                 username: $('#username').val(),
                 password: $('#password').val(),
@@ -73,6 +74,7 @@ var app = {
         } else {
             if (this.settings) {
                 $('#host').val(this.settings.host);
+                $('#ssl').prop('checked', this.settings.ssl);
                 $('#port').val(this.settings.port);
                 $('#username').val(this.settings.username);
                 $('#password').val(this.settings.password);
@@ -87,7 +89,9 @@ var app = {
     },
 
     receiveMetrics: function () {
-        this.mqtt.subscribe("metrics/exchange");
+        this.settings.exchangeTopic = prompt("Топик", "metrics/exchange");
+        this.storeSettings();
+        this.mqtt.subscribe(this.settings.exchangeTopic);
     },
 
     createMetrics: function () {
@@ -98,7 +102,7 @@ var app = {
             metric.__proto__ = metric$;
 
             var elem = $('#metricTemplate').clone();
-            $(elem).click(this.metricPublish.bind(this));
+            $(elem).click(this.metricTap.bind(this));
             $(elem).attr('id', "id_" + metric.id);
             $(elem).attr('title', metric.topic.split("/", 1)[0]);
             $(".name", elem).html(metric.name);
@@ -106,7 +110,7 @@ var app = {
 
             this.updateMetric(idx);
 
-            if ($.inArray(metric.topic, this.topics) == -1) {
+            if (metric.topic != "" && $.inArray(metric.topic, this.topics) == -1) {
                 this.mqtt.subscribe(metric.topic);
                 this.topics.push(metric.topic);
             }
@@ -117,58 +121,71 @@ var app = {
         var metric = this.metrics[idx];
         var elem = $('#id_' + metric.id);
 
+        metric.payload = metric.payload ? metric.payload : metric.lastPayload ? metric.lastPayload : "";
+        metric.lastActivity = metric.activity ? metric.activity : metric.lastActivity ? metric.lastActivity : "";
+
         if (metric.jsOnReceive != "") {
-            eval(metric.jsOnReceive.replace(/event/g, "metric").replace(/app/g, "this"));
+            try {
+                eval(metric.jsOnReceive.replace(/event/g, "metric").replace(/app/g, "this"));
+            } catch (error) {
+                console.error(error);
+            }
         }
 
-        payload = metric.payload ? metric.payload : metric.lastPayload ? metric.lastPayload : "";
-        lastActivity = metric.activity ? metric.activity : metric.lastActivity ? metric.lastActivity : "";
-
         if (metric.jsonPath != "") {
-            var targetPayload = payload != "" ? jsonPath(JSON.parse(payload), metric.jsonPath) : payload;
+            var targetPayload = metric.payload != "" ? jsonPath(JSON.parse(metric.payload), metric.jsonPath)[0] : metric.payload;
         } else {
-            var targetPayload = payload;
+            var targetPayload = metric.payload;
         }
 
         targetPayload = typeof targetPayload !== "undefined" ? targetPayload : metric.payloadOff;
 
-        metric.lastPayload = payload;
+        metric.lastPayload = metric.payload;
         if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
-        metric.lastActivity = lastActivity;
 
         if (metric.jsOnDisplay != "") {
             eval(metric.jsOnDisplay.replace(/event/g, "metric").replace(/app/g, "this"));
         }
 
+        let textColorClass, textColor, text;
         switch (metric.type) {
             case 1: // text
-                let textColorClass = "mjd-color" + (Number.isInteger(metric.textColor) && metric.textColor < 0 ? metric.textColor : "");
-                let textColor = textColorClass == "mjd-color" ? { 'color': metric.textColor } : {};
-                $(".body span", elem).removeClass().addClass("mjd-text").addClass(textColorClass).css(textColor).html(metric.prefix + targetPayload + metric.postfix);
+                textColorClass = "mjd-color" + (Number.isInteger(metric.textColor) && metric.textColor < 0 ? metric.textColor : "");
+                textColor = textColorClass == "mjd-color" ? { 'color': metric.textColor } : {};
+                text = metric.prefix + targetPayload + metric.postfix
+                $(".body span", elem).removeClass().addClass("mjd-text").addClass(textColorClass).css(textColor).html(text);
                 fitty("#id_" + metric.id + " .body .mjd-text", {minSize: 10, maxSize: {"SMALL":30, "MEDIUM":60, "LARGE":90}[metric.mainTextSize] });
                 break;
             case 2: //switch
-                if (targetPayload != metric.payloadOn && payload != metric.payloadOff ) return;
                 switch (targetPayload) {
                     case metric.payloadOn:
                         var icon = metric.iconOn;
                         var color = metric.onColor;
                         break;
                     case metric.payloadOff:
+                    default:
                         var icon = metric.iconOff;
                         var color = metric.offColor;
                         break;
-                    default:
-
-                        break;
                 }
                 $(".body span", elem).removeClass().addClass("mjd-icon").addClass("mjd-icon-" + icon).addClass("mjd-color" + color);
+                break;
+            case 3: //range
+                console.log("Unknown type");
+                break;
+            case 4: //select
+                textColorClass = "mjd-color" + (Number.isInteger(metric.textColor) && metric.textColor < 0 ? metric.textColor : "");
+                textColor = textColorClass == "mjd-color" ? { 'color': metric.textColor } : {};
+                text = typeof metric.items != 'undefined' && metric.items.length > 0 ? metric.items.find(m => m.payload === targetPayload).label : "";
+                console.log(metric.name, "Type - select: ", targetPayload, metric.items, text);
+                $(".body span", elem).removeClass().addClass("mjd-text").addClass(textColorClass).css(textColor).html(text);
+                fitty("#id_" + metric.id + " .body .mjd-text", {minSize: 10, maxSize: {"SMALL":30, "MEDIUM":60, "LARGE":90}[metric.mainTextSize] });
                 break;
             default:
                 console.log("Unknown type");
         }
 
-        $(".last", elem).html(lastActivity != 0 ? this.elapsed(metric.getSecondsSinceLastActivity())[1] : "");
+        $(".last", elem).html(metric.lastActivity != 0 ? this.elapsed(metric.getSecondsSinceLastActivity())[1] : "");
 
     },
 
@@ -214,20 +231,22 @@ var app = {
         }
     },
 
-    metricPublish: function (e) {
+    metricTap: function (e) {
         var metric = this.metrics.find((metric) => metric.id === e.currentTarget.id.substring(3));
 
         if (metric.jsOnTap != "") {
             eval(metric.jsOnTap.replace(/event/g, "metric").replace(/app/g, "this"));
         }
 
-        if (!metric.enablePub) return;
+        if (!metric.enablePub || metric.preventDefault) return;
 
-        if (typeof metric.topicPub != "undefined") {
+        if (typeof metric.topicPub != "undefined" && metric.topicPub !== "") {
             var topic = metric.topicPub;
         } else {
             var topic = metric.topic;
         }
+
+        if (topic === "") return;
 
         if (metric.jsonPath != "") {
             var lastPayload = metric.lastJsonPathValue;
@@ -235,13 +254,20 @@ var app = {
             var lastPayload = metric.lastPayload;
         }
 
-        lastPayload = typeof lastPayload !== "undefined" ? lastPayload : metric.payloadOff;
-
         switch (metric.type) {
             case 1: // text
-                console.log("Text type. TODO");
+                $('#text-modal #confirmBtn').click((event) => {
+                    event.preventDefault();
+                    var payload = $('#text').val();
+                    $('#text').val("");
+                    $('#text-modal')[0].close();
+                    this.metricPublish(e, topic, payload, metric.retained, metric.qos);
+                });
+                $('#text-modal')[0].showModal();
+                return;
                 break;
             case 2: //switch
+                lastPayload = typeof lastPayload !== "undefined" ? lastPayload : metric.payloadOff;
                 switch (lastPayload) {
                     case metric.payloadOn:
                         var payload = metric.payloadOff;
@@ -250,12 +276,42 @@ var app = {
                         var payload = metric.payloadOn;
                         break;
                 }
+                this.metricPublish(e, topic, payload, metric.retained, metric.qos);
+                break;
+            case 3: //range
+                console.log("Unknown type");
+                break;
+            case 4: //selecet
+                lastPayload = typeof lastPayload !== "undefined" ? lastPayload : metric.payloadOff;
+                metric.items.forEach(item => {
+                    let elem = $('#select-modal p:first').clone();
+                    $('input', elem).attr("value", item.payload);
+                    $('span', elem).html(item.label);
+                    $('span', elem).html(item.label);
+                    if (lastPayload == item.payload) $('input', elem).prop('checked', true);
+                    $("#select-modal form p:last").after(elem);
+                    $(elem).show();
+                    $('input[name="radio"]', elem).click((event) => {
+                        var payload = $(event.target).val();
+                        $('#select-modal')[0].close();
+                        $("#select-modal p").not(':first').remove();
+                        this.metricPublish(e, topic, payload, metric.retained, metric.qos);
+                    });
+                    $("#select-modal")[0].showModal();
+                });
+                $("#select-modal button").click((event) => {
+                    $("#select-modal p").not(':first').remove();
+                });
                 break;
             default:
                 console.log("Unknown type");
+                return;
         }
+    },
+
+    metricPublish: function (e, topic, payload, retained, qos) {
         $('.loader', e.currentTarget).show();
-        this.publish(topic, payload, metric.retained, metric.qos);
+        this.publish(topic, payload, retained, qos);
     },
 
     publish: function (topic, payload, retained, qos) {
@@ -273,7 +329,7 @@ var app = {
         this.mqtt.onConnectionLost = this.onConnectionLost.bind(this);
         this.mqtt.onMessageArrived = this.onMessageArrived.bind(this);
         this.mqtt.connect({
-            useSSL: true,
+            useSSL: this.settings.ssl,
             timeout: 3,
             userName: this.settings.username,
             password: this.settings.password,
@@ -323,9 +379,9 @@ var app = {
     onMessageArrived: function (msg) {
         console.log(msg.destinationName);
         console.log(msg.payloadString);
-        if (msg.destinationName == "metrics/exchange") {
-            console.log("Exchanging metrics");
-            this.mqtt.unsubscribe("metrics/exchange");
+        if (msg.destinationName == this.settings.exchangeTopic) {
+            //console.log("Exchanging metrics");
+            this.mqtt.unsubscribe(this.settings.exchangeTopic);
             this.metrics = JSON.parse(msg.payloadString);
             storageSet('metrics', JSON.stringify(this.metrics));
             this.createMetrics();

@@ -26,7 +26,10 @@
         <div id="settingsFormContainer">
             <form id="settingsForm">
               <label for="host">Хост:</label>
-              <input type="text" id="host" name="host"><br>
+              <input type="text" id="host" name="host">
+
+              <label for="ssl">SSL:</label>
+              <input type="checkbox" id="ssl" name="ssl" checked><br>
 
               <label for="port">Порт:</label>
               <input type="text" id="port" name="port"><br>
@@ -55,6 +58,27 @@
             <div class="last"></div>
             <div class="loader"><div></div><div></div><div></div><div></div></div>
         </div>
+
+        <dialog id="text-modal">
+          <form>
+            <p>
+              <input type="text" id="text" name="text">
+            </p>
+            <div>
+              <button id="confirmBtn" value="default">Установить</button>
+              <button value="cancel" formmethod="dialog">Отмена</button>
+            </div>
+          </form>
+        </dialog>
+
+        <dialog id="select-modal">
+          <form>
+            <p style="display: none;"><label><input name="radio" value="" type="radio"><span></span></label></p>
+            <div>
+              <button value="cancel" formmethod="dialog">Отмена</button>
+            </div>
+          </form>
+        </dialog>
 
         <script src="js/jquery-3.6.0.min.js"></script>
         <script src="js/paho-mqtt-1.1.0.min.js"></script>
