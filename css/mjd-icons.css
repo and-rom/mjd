@@ -1786,10 +1786,10 @@
     content: "\0231";
 }
 
-.mjd-icon-ic_connect:before {
+.mjd-icon-ic_disconnect:before {
     content: "\0232";
 }
 
-.mjd-icon-ic_disconnect:before {
+.mjd-icon-ic_connect:before {
     content: "\0233";
 }

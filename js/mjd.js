@@ -53,7 +53,7 @@ var app = {
         }.bind(this));
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
-        $('#connectBtn').click(this.connect.bind(this));
+        $('#connectBtn').on('click', this.connect.bind(this));
         $('#receiveMetricsBtn').click(this.receiveMetrics.bind(this));
         this.loadSettings();
         if (this.settings && this.settings.autoconnect) this.connect();
@@ -177,7 +177,6 @@ var app = {
                 textColorClass = "mjd-color" + (Number.isInteger(metric.textColor) && metric.textColor < 0 ? metric.textColor : "");
                 textColor = textColorClass == "mjd-color" ? { 'color': metric.textColor } : {};
                 text = typeof metric.items != 'undefined' && metric.items.length > 0 ? metric.items.find(m => m.payload === targetPayload).label : "";
-                console.log(metric.name, "Type - select: ", targetPayload, metric.items, text);
                 $(".body span", elem).removeClass().addClass("mjd-text").addClass(textColorClass).css(textColor).html(text);
                 fitty("#id_" + metric.id + " .body .mjd-text", {minSize: 10, maxSize: {"SMALL":30, "MEDIUM":60, "LARGE":90}[metric.mainTextSize] });
                 break;
@@ -324,19 +323,23 @@ var app = {
 
     connect: function () {
         console.log("Connecting to " + this.settings.host + " " + this.settings.port );
-        this.mqtt = new Paho.Client(this.settings.host, this.settings.port, this.settings.clientid);
-        this.mqtt.onConnected = this.onConnected.bind(this);
-        this.mqtt.onConnectionLost = this.onConnectionLost.bind(this);
-        this.mqtt.onMessageArrived = this.onMessageArrived.bind(this);
-        this.mqtt.connect({
-            useSSL: this.settings.ssl,
-            timeout: 3,
-            userName: this.settings.username,
-            password: this.settings.password,
-            onSuccess: this.onSuccess,
-            onFailure: this.onFailure,
-            invocationContext: this
-        });
+        if (typeof this.mqtt === 'undefined' ) {
+            this.mqtt = new Paho.Client(this.settings.host, this.settings.port, this.settings.clientid);
+            this.mqtt.onConnected = this.onConnected.bind(this);
+            this.mqtt.onConnectionLost = this.onConnectionLost.bind(this);
+            this.mqtt.onMessageArrived = this.onMessageArrived.bind(this);
+            this.connectOptions = {
+                useSSL: this.settings.ssl,
+                timeout: 3,
+                userName: this.settings.username,
+                password: this.settings.password,
+                onSuccess: this.onSuccess,
+                onFailure: this.onFailure,
+                invocationContext: this,
+                reconnect: true
+            }
+        }
+        this.mqtt.connect(this.connectOptions);
     },
 
     disconnect: function () {
@@ -355,8 +358,8 @@ var app = {
 
     onConnected: function () {
         console.log("Connected to " + this.settings.host);
-        $('#connectBtn').off('click', this.connect);
-        $('#connectBtn').click(this.disconnect.bind(this));
+        $('#connectBtn').off('click');
+        $('#connectBtn').on('click', this.disconnect.bind(this));
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-disconnect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_connect").addClass("mjd-icon-ic_disconnect");
         this.createMetrics();
@@ -369,8 +372,8 @@ var app = {
             console.log(responseObject.errorMessage);
         }
         $('.loader').hide();
-        $('#connectBtn').off('click' ,this.disconnect);
-        $('#connectBtn').click(this.connect.bind(this));
+        $('#connectBtn').off('click');
+        $('#connectBtn').on('click', this.connect.bind(this));
         $("#connectBtn").prop("title", $('#connectBtn').attr('data-connect-str'));
         $("#connectBtn i").removeClass("mjd-icon-ic_disconnect").addClass("mjd-icon-ic_connect");
         clearInterval(this.timer);
@@ -380,7 +383,7 @@ var app = {
         console.log(msg.destinationName);
         console.log(msg.payloadString);
         if (msg.destinationName == this.settings.exchangeTopic) {
-            //console.log("Exchanging metrics");
+            console.log("Exchanging metrics");
             this.mqtt.unsubscribe(this.settings.exchangeTopic);
             this.metrics = JSON.parse(msg.payloadString);
             storageSet('metrics', JSON.stringify(this.metrics));
