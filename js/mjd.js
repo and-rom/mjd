@@ -126,7 +126,7 @@ var app = {
 
         if (metric.jsOnReceive != "") {
             try {
-                eval(metric.jsOnReceive.replace(/event/g, "metric").replace(/app/g, "this"));
+                eval(metric.jsOnReceive.replace(/event\./g, "metric.").replace(/app\./g, "this."));
             } catch (error) {
                 console.error(error);
             }
@@ -144,7 +144,7 @@ var app = {
         if (metric.jsonPath != "") metric.lastJsonPathValue = targetPayload;
 
         if (metric.jsOnDisplay != "") {
-            eval(metric.jsOnDisplay.replace(/event/g, "metric").replace(/app/g, "this"));
+            eval(metric.jsOnDisplay.replace(/event\./g, "metric.").replace(/app\./g, "this."));
         }
 
         let textColorClass, textColor, text;
@@ -234,7 +234,7 @@ var app = {
         var metric = this.metrics.find((metric) => metric.id === e.currentTarget.id.substring(3));
 
         if (metric.jsOnTap != "") {
-            eval(metric.jsOnTap.replace(/event/g, "metric").replace(/app/g, "this"));
+            eval(metric.jsOnTap.replace(/event\./g, "metric.").replace(/app\./g, "this."));
         }
 
         if (!metric.enablePub || metric.preventDefault) return;
