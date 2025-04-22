@@ -180,6 +180,9 @@ var app = {
                 $(".body span", elem).removeClass().addClass("mjd-text").addClass(textColorClass).css(textColor).html(text);
                 fitty("#id_" + metric.id + " .body .mjd-text", {minSize: 10, maxSize: {"SMALL":30, "MEDIUM":60, "LARGE":90}[metric.mainTextSize] });
                 break;
+            case 5: //image
+                $(".body img", elem).attr('src', targetPayload);
+                break;
             default:
                 console.log("Unknown type");
         }
@@ -302,6 +305,9 @@ var app = {
                     $("#select-modal p").not(':first').remove();
                 });
                 break;
+            case 5: //image
+                console.log("TODO: image");
+                break;
             default:
                 console.log("Unknown type");
                 return;
@@ -381,7 +387,15 @@ var app = {
 
     onMessageArrived: function (msg) {
         console.log(msg.destinationName);
-        console.log(msg.payloadString);
+        let binary = false;
+        let bin_type = '';
+        try {
+            console.log(msg.payloadString);
+        } catch(e) {
+            binary = true;
+            bin_type = this.file_type(msg.payloadBytes)
+            console.log('data:' + bin_type + ';base64,...');
+        }
         if (msg.destinationName == this.settings.exchangeTopic) {
             console.log("Exchanging metrics");
             this.mqtt.unsubscribe(this.settings.exchangeTopic);
@@ -392,12 +406,34 @@ var app = {
             this.metrics.forEach((metric, idx) => {
                 if (metric.topic === msg.destinationName) {
                     $('#id_' + metric.id + ' .loader').hide();
-                    this.metrics[idx].payload = msg.payloadString;
+                    this.metrics[idx].payload = !binary ? msg.payloadString : 'data:' + bin_type + ';base64,' + btoa(String.fromCharCode(...msg.payloadBytes));
                     this.metrics[idx].activity = Math.trunc(Date.now()/1000);
                     this.updateMetric(idx);
                 }
             });
         }
+    },
+
+    file_type: function (data) {
+      var arr = data.subarray(0, 4);
+      var header = '';
+
+      for(var i = 0; i < arr.length; i++) {
+        header += arr[i].toString(16);
+      }
+
+      switch(true) {
+        case /^89504e47/.test(header):
+          return 'image/png';
+        case /^47494638/.test(header):
+          return 'image/gif';
+        case /^424d/.test(header):
+          return 'image/bmp';
+        case /^ffd8ff/.test(header):
+          return 'image/jpeg';
+        default:
+          return 'unknown';
+      }
     }
 }
 
