@@ -281,7 +281,7 @@ var app = {
                 this.metricPublish(e, topic, payload, metric.retained, metric.qos);
                 break;
             case 3: //range
-                console.log("Unknown type");
+                console.log("TODO: Range");
                 break;
             case 4: //selecet
                 lastPayload = typeof lastPayload !== "undefined" ? lastPayload : metric.payloadOff;
