@@ -89,9 +89,12 @@ var app = {
     },
 
     receiveMetrics: function () {
-        this.settings.exchangeTopic = prompt("Топик", "metrics/exchange");
-        this.storeSettings();
-        this.mqtt.subscribe(this.settings.exchangeTopic);
+        let topic = prompt("Топик", this.settings.exchangeTopic || "metrics/exchange");
+        if (topic !== null ) {
+          this.settings.exchangeTopic = topic;
+          this.storeSettings();
+          this.mqtt.subscribe(this.settings.exchangeTopic);
+        }
     },
 
     createMetrics: function () {
