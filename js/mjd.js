@@ -352,7 +352,8 @@ var app = {
     },
 
     disconnect: function () {
-        this.mqtt.disconnect();
+        if (this.mqtt.isConnected()) this.mqtt.disconnect();
+        delete this.mqtt;
     },
 
     onSuccess: function (responseObject) {
@@ -363,6 +364,7 @@ var app = {
     onFailure: function (responseObject) {
         let self = responseObject.invocationContext;
         console.log("Connection attempt to " + self.settings.host + " failed");
+        delete self.mqtt;
     },
 
     onConnected: function () {
