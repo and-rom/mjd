@@ -386,15 +386,14 @@ var app = {
     },
 
     onMessageArrived: function (msg) {
-        console.log(msg.destinationName);
         let binary = false;
         let bin_type = '';
         try {
-            console.log(msg.payloadString);
+            console.log(msg.destinationName, msg.payloadString);
         } catch(e) {
             binary = true;
             bin_type = this.file_type(msg.payloadBytes)
-            console.log('data:' + bin_type + ';base64,...');
+            console.log(msg.destinationName, 'data:' + bin_type + ';base64,...');
         }
         if (msg.destinationName == this.settings.exchangeTopic) {
             console.log("Exchanging metrics");
