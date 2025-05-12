@@ -331,7 +331,7 @@ var app = {
     },
 
     connect: function () {
-        console.log("Connecting to " + this.settings.host + " " + this.settings.port );
+        console.log("Connecting to " + this.settings.host + " " + this.settings.port);
         if (typeof this.mqtt === 'undefined' ) {
             this.mqtt = new Paho.Client(this.settings.host, this.settings.port, this.settings.clientid);
             this.mqtt.onConnected = this.onConnected.bind(this);
