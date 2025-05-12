@@ -39,7 +39,7 @@ var app = {
         $('#connectionSettingsBtn').click(this.connectionSettings.bind(this))
         $("#settingsForm").submit(function( event ) {
             event.preventDefault();
-            this.settings = {
+            this.settings = {...this.settings,
                 host: $('#host').val(),
                 ssl: $('#ssl').is(":checked"),
                 port: parseInt($('#port').val()),
